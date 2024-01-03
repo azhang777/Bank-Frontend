@@ -1,0 +1,30 @@
+body {
+  overflow-x: hidden;
+}
+
+.card {
+  border: 0;
+}
+
+.custom-card-title {
+  font-size: 5vw;
+  color: white;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  margin: 3vw 0 0 3vw;
+}
+
+.custom-card-text {
+  font-size: 4vw;
+  color: white;
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  margin: 1vw 0 0 3vw;
+}
+
+.card-img {
+  filter: brightness(110%);
+}
+
+.icon {
+  width: 150px;
+  height: 150px;
+}
