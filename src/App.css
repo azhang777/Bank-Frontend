@@ -6,25 +6,82 @@ body {
   border: 0;
 }
 
+.card-row {
+  height: 100%;
+}
+
 .custom-card-title {
   font-size: 5vw;
   color: white;
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-  margin: 3vw 0 0 3vw;
 }
 
 .custom-card-text {
   font-size: 4vw;
   color: white;
   text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-  margin: 1vw 0 0 3vw;
+}
+
+.custom-header {
+  font-size: 3vw;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
 .card-img {
   filter: brightness(110%);
 }
 
+.form-container {
+  max-width: fit-content;
+  max-height: fit-content;
+}
+.form-label {
+  font-size: 2em;
+}
+
 .icon {
   width: 150px;
   height: 150px;
+}
+
+.custom-bullet-title {
+  font-size: 2vw;
+  font-weight: 700px;
+  letter-spacing: 1px;
+  font-style: italic;
+}
+
+.custom-bullet-text {
+  font-size: 1.5vw;
+}
+
+@media (max-width: 768px) {
+  .icon {
+    width: 75px;
+    height: 75px;
+  }
+}
+
+@media (max-width: 425px) {
+  .custom-nav-mobile {
+    justify-content: space-evenly !important;
+  }
+
+  .custom-header {
+    font-size: 20px;
+  }
+  .custom-bullet-title {
+    font-size: 14px;
+    text-align: center;
+  }
+  .custom-bullet-text {
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 1900px) {
+  .inner-content {
+    display: none;
+  }
 }

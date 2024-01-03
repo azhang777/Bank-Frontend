@@ -1,6 +1,8 @@
 import HeroImg from "../../assets/michal-bielejewski.jpg";
 import CustomCard from "../../common/CustomCard";
-import CustomCardBullet from "../../common/CustomBulletCard";
+import About from "./About";
+import SignUpForm from "./SignUpForm";
+
 const Hero = () => {
   return (
     <div className='hero container-fluid p-0 '>
@@ -8,31 +10,13 @@ const Hero = () => {
         <CustomCard
           img={HeroImg}
           title='Control your Future'
-          text='Start your journey now.'
-        />
+          text='Start your journey now'
+        >
+          <SignUpForm />
+        </CustomCard>
       </div>
-      <div className='row justify-content-between'>
-        <div className='col-12'>
-          <h1 className='fs-1 text-center my-5 py-3'>Invest in Yourself</h1>
-        </div>
-        <div className='col-2 d-flex justify-content-center'>
-          <CustomCardBullet
-            img='/check.png'
-            text='Simple'
-          />
-        </div>
-        <div className='col-2 d-flex justify-content-center'>
-          <CustomCardBullet
-            img='/fast.png'
-            text='Fast'
-          />
-        </div>
-        <div className='col-2 d-flex justify-content-center'>
-          <CustomCardBullet
-            img='/target.png'
-            text='Effective'
-          />
-        </div>
+      <div className='row'>
+        <About />
       </div>
     </div>
   );

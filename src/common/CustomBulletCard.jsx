@@ -1,17 +1,21 @@
 // eslint-disable-next-line react/prop-types
-const CustomBulletCard = ({ img, text }) => {
+const CustomBulletCard = ({ img, title, text }) => {
   return (
-    <div
-      className='card d-flex justify-content-center align-items-center'
-      style={{ width: "12rem" }}
-    >
-      <img
-        src={img}
-        alt='icon'
-        className='icon'
-      />
-      <div className='card-body'>
-        <p className='card-text fw-bold fs-1 py-5'>{text}</p>
+    <div className='card mb-3'>
+      <div className='row d-flex justify-content-evenly'>
+        <div className='col-md-2 col-sm-12 text-center py-4'>
+          <img
+            src={img}
+            className='icon'
+            alt='icon-loading'
+          />
+        </div>
+        <div className='col-md-6 col-sm-8'>
+          <div className='card-body'>
+            <h5 className='custom-bullet-title'>{title}</h5>
+            <p className='custom-bullet-text'>{text}</p>
+          </div>
+        </div>
       </div>
     </div>
   );
