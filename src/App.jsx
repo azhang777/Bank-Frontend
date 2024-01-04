@@ -7,16 +7,15 @@ import Customer from "./pages/Customer/Customer";
 import Account from "./pages/Account/Account";
 import Bill from "./pages/Bill/Bill";
 import Transaction from "./pages/Transaction/Transaction";
-import CustomFooter from "./common/CustomFooter";
 import { useState } from "react";
 function App() {
   const [authToken, setIsAuth] = useState("");
 
   const handleAuth = (token) => {
     setIsAuth(token);
-
     console.log(token);
   };
+
   return (
     <Router>
       <div>
@@ -47,7 +46,6 @@ function App() {
             element={authToken ? <Bill /> : <LandingPage />}
           />
         </Routes>
-        <CustomFooter />
       </div>
     </Router>
   );

@@ -1,5 +1,13 @@
+import RouteContainer from "./RouteContainer";
+import WelcomeBanner from "./WelcomeBanner";
+
 const Home = () => {
-  return <div>WELCOME HOME!</div>;
+  return (
+    <>
+      <WelcomeBanner />
+      <RouteContainer />
+    </>
+  );
 };
 
 export default Home;

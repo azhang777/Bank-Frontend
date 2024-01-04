@@ -2,6 +2,7 @@ import { useGoogleLogin, googleLogout } from "@react-oauth/google";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import CustomButton from "./CustomButton";
 
 // eslint-disable-next-line react/prop-types
 const LoginModal = ({ handleAuth }) => {
@@ -50,37 +51,62 @@ const LoginModal = ({ handleAuth }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Fetch form data or perform any other action here
     const username = document.getElementById("exampleInputUsername").value;
     const password = document.getElementById("exampleInputPassword1").value;
 
-    // For example, log the form data
     console.log("Submitted Username:", username);
     console.log("Submitted Password:", password);
-
-    // You can perform other actions like sending data to a server, etc.
   };
 
   return (
     <>
       {profile ? (
         <div>
-          <button
-            onClick={logout}
-            className='btn btn-primary rounded-pill px-4 mx-4 shadow-sm fs-5'
-          >
-            Log out
-          </button>
+          <CustomButton onClick={() => setShowModal(true)}>
+            {profile.name}
+          </CustomButton>
+
+          {showModal && (
+            <div
+              className='modal fade show'
+              id='exampleModal'
+              tabIndex='-1'
+              aria-labelledby='exampleModalLabel'
+              aria-hidden='true'
+              style={{ display: "block" }}
+              onClick={() => setShowModal(false)}
+            >
+              <div className='modal-dialog'>
+                <div className='modal-content'>
+                  <div className='modal-header'>
+                    <h1 className='modal-title fs-5 text-center'>Logout</h1>
+                    <button
+                      type='button'
+                      className='btn-close'
+                      data-bs-dismiss='modal'
+                      aria-label='Close'
+                      onClick={() => setShowModal(false)}
+                    ></button>
+                  </div>
+                  <div className='modal-body mt-3'>
+                    <p>Are you sure you want to logout?</p>
+                  </div>
+                  <div className='modal-footer justify-content-center'>
+                    <CustomButton onClick={logout}>Log out</CustomButton>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       ) : (
         <div>
-          <a
-            href='#'
+          <CustomButton
             className='btn btn-primary rounded-pill px-4 mx-4 shadow-sm fs-5'
             onClick={() => setShowModal(true)}
           >
             Login
-          </a>
+          </CustomButton>
 
           {showModal && (
             <div
@@ -137,18 +163,10 @@ const LoginModal = ({ handleAuth }) => {
                       </div>
                     </div>
                     <div className='modal-footer'>
-                      <button
-                        className='btn btn-primary rounded-pill px-4 mx-4 shadow-sm fs-5'
-                        onClick={login}
-                      >
+                      <CustomButton onClick={login}>
                         Sign in with Google
-                      </button>
-                      <button
-                        type='submit'
-                        className='btn btn-primary rounded-pill px-4 mx-4 shadow-sm fs-5'
-                      >
-                        Log in
-                      </button>
+                      </CustomButton>
+                      <CustomButton type='submit'>Log in</CustomButton>
                     </div>
                   </form>
                 </div>
