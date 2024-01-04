@@ -1,29 +1,29 @@
 import { Link } from "react-router-dom";
 import LoginModal from "./LoginModal";
 
-const CustomNav = () => {
+// eslint-disable-next-line react/prop-types
+const CustomNav = ({ handleAuth }) => {
   return (
     <nav className='navbar navbar-expand-lg bg-body-tertiary py-4'>
       <div className=' container-fluid d-flex justify-content-between custom-nav-mobile'>
-        <a
+        <Link
+          to={"/"}
           className='navbar-brand fs-2 mx-4 fw-bold'
-          href='#'
         >
           Bank of Mikaila
-        </a>
+        </Link>
 
         <ul className='navbar-nav d-flex flex-row text-center'>
           <li className='nav-item'>
-            <a
+            <Link
+              to={"/home"}
               className='btn btn-primary rounded-pill px-4 mx-4 shadow-sm fs-5'
-              aria-current='page'
-              href='#'
             >
               Home
-            </a>
+            </Link>
           </li>
           <li className='nav-item'>
-            <LoginModal />
+            <LoginModal handleAuth={handleAuth} />
           </li>
         </ul>
       </div>
@@ -32,32 +32,3 @@ const CustomNav = () => {
 };
 
 export default CustomNav;
-
-/*
- <ul classNameName='navbar-nav flex-row'>
-          <li classNameName='nav-item mx-2'>
-            <Link
-              to={"/about"}
-              classNameName='nav-link '
-            >
-              About
-            </Link>
-          </li>
-          <li classNameName='nav-item mx-2'>
-            <Link
-              to={"/calculator"}
-              classNameName='nav-link'
-            >
-              Calculator
-            </Link>
-          </li>
-          <li classNameName='nav-item mx-2'>
-            <Link
-              to={"/chart"}
-              classNameName='nav-link'
-            >
-              Chart
-            </Link>
-          </li>
-        </ul>
-        */

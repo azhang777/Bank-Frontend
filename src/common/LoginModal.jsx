@@ -3,45 +3,49 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const LoginModal = () => {
+// eslint-disable-next-line react/prop-types
+const LoginModal = ({ handleAuth }) => {
   const [showModal, setShowModal] = useState(false);
+  const [user, setUser] = useState([]);
   const [profile, setProfile] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (profile) {
-      const { access_token } = profile;
+    if (user) {
       axios
         .get(
-          `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${access_token}`,
+          `https://www.googleapis.com/oauth2/v1/userinfo?access_token=${user.access_token}`,
           {
             headers: {
-              Authorization: `Bearer ${access_token}`,
+              Authorization: `Bearer ${user.access_token}`,
               Accept: "application/json",
             },
           }
-        )
+        ) //from this, we get the response, which is the user's profile information retrieved from that route with param of access token
         .then((res) => {
+          //https://www.googleapis.com/oauth2/v1/userinfo?access_token=ya29.a0AfB_byCabRq36jXihkGULR9DNgbVy_uGpWHANC0xy2s-aRm2Ss-exky1yTHDK9SvSBsaz3w8T1n0TNK9cenc6zJrjz3UbHxyYpxs7FPvDodJdWyVM8BH92mAVJwopuKjwtE8OsyTvbKeU5OTpOUcya2cEtfrmIbB1-oaCgYKAZcSARASFQHGX2MixIWFqAwaA-xf4xCB71ekcA0170
           setProfile(res.data);
         })
-        .catch((err) => console.error(err));
+        .catch((err) => console.log(err));
     }
-  }, [profile]);
-
-  const logout = () => {
-    googleLogout();
-    setProfile(null);
-    navigate("/");
-  };
+  }, [user]);
 
   const login = useGoogleLogin({
     onSuccess: (response) => {
-      setProfile(response);
+      handleAuth(response.access_token);
+      setUser(response);
       navigate("/home");
       setShowModal(false);
     },
     onError: (error) => console.error("Login Failed:", error),
   });
+
+  const logout = () => {
+    handleAuth("");
+    googleLogout();
+    setProfile(null);
+    navigate("/");
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -61,16 +65,12 @@ const LoginModal = () => {
     <>
       {profile ? (
         <div>
-          <img
-            src={profile.picture}
-            alt='user image'
-          />
-          <h3>User Logged in</h3>
-          <p>Name: {profile.name}</p>
-          <p>Email Address: {profile.email}</p>
-          <br />
-          <br />
-          <button onClick={logout}>Log out</button>
+          <button
+            onClick={logout}
+            className='btn btn-primary rounded-pill px-4 mx-4 shadow-sm fs-5'
+          >
+            Log out
+          </button>
         </div>
       ) : (
         <div>
