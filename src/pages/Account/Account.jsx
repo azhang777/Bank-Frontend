@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import CustomList from "../../common/CustomList";
 import Loading from "../../common/Loading";
 import { requestCustomerAccounts } from "../../services/accountService";
+import CustomTable from "../../common/CustomTable";
+import CommonRow from "../../common/CommonRow";
 
 const Account = () => {
   const [accounts, setAccounts] = useState(null);
-
+  const columns = ["ID", "Account Type", "Nickname"];
   useEffect(() => {
     const retrieveCustomerAccounts = async () => {
       try {
@@ -28,8 +29,27 @@ const Account = () => {
     <div>
       <h1 className='text-center py-5'>Accounts</h1>
       {accounts.length === 0 ? (
-        <h1 className='text-center'>no bills exist :(</h1>
+        <h1 className='text-center'>no accounts exist :(</h1>
       ) : (
+        <CustomTable
+          columns={columns}
+          dataRows={accounts.map((account) => (
+            <CommonRow
+              key={account.id}
+              column1={account.id}
+              column2={account.accountType}
+              column3={account.nickName}
+            />
+          ))}
+        />
+      )}
+    </div>
+  );
+};
+
+export default Account;
+
+/*
         <CustomList>
           {accounts.map((account) => (
             <a
@@ -44,9 +64,4 @@ const Account = () => {
             </a>
           ))}
         </CustomList>
-      )}
-    </div>
-  );
-};
-
-export default Account;
+*/

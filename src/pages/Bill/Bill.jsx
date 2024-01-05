@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { requestBills } from "../../services/billService";
 import CustomList from "../../common/CustomList";
 import Loading from "../../common/Loading";
+import CustomTable from "../../common/CustomTable";
+import CommonRow from "../../common/CommonRow";
 
 const Bill = () => {
   const [bills, setBills] = useState(null);
-
+  const columns = ["ID", "Nickname", "Payment Date"];
   useEffect(() => {
     const retrieveBills = async () => {
       try {
@@ -30,6 +32,25 @@ const Bill = () => {
       {bills.length === 0 ? (
         <h1 className='text-center'>no bills exist :(</h1>
       ) : (
+        <CustomTable
+          columns={columns}
+          dataRows={bills.map((bill) => (
+            <CommonRow
+              key={bill.id}
+              id={bill.id}
+              nickName={bill.nickName}
+              accountType={bill.paymentDate}
+            />
+          ))}
+        />
+      )}
+    </div>
+  );
+};
+
+export default Bill;
+
+/*
         <CustomList>
           {bills.map((bill) => (
             <a
@@ -43,9 +64,4 @@ const Bill = () => {
             </a>
           ))}
         </CustomList>
-      )}
-    </div>
-  );
-};
-
-export default Bill;
+*/

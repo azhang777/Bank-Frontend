@@ -1,6 +1,6 @@
 const SignUpForm = () => {
   return (
-    <form className='form-container bg-white p-5 rounded-5 shadow-lg '>
+    <form className='container-fluid bg-white p-5 rounded-5 shadow-lg hide-content '>
       <div className='row mb-5'>
         <div className='col'>
           <label

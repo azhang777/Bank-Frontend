@@ -7,7 +7,7 @@ const About = () => {
   return (
     <>
       <div className='col-12'>
-        <h1 className='custom-header text-center my-5 py-3'>
+        <h1 className='custom-header text-center my-5 py-4'>
           Invest in Yourself.
         </h1>
       </div>

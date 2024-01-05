@@ -3,7 +3,7 @@ const CustomBulletCard = ({ img, title, text }) => {
   return (
     <div className='card mb-3'>
       <div className='row d-flex justify-content-evenly'>
-        <div className='col-md-2 col-sm-12 text-center py-4'>
+        <div className='col-md-2 col-sm-12 d-flex justify-content-center align-items-center'>
           <img
             src={img}
             className='icon'

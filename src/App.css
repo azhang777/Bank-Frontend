@@ -32,10 +32,6 @@ body {
   filter: brightness(110%);
 }
 
-.form-container {
-  max-width: fit-content;
-  max-height: fit-content;
-}
 .form-label {
   font-size: 2em;
 }
@@ -81,7 +77,7 @@ body {
 }
 
 @media (max-width: 1900px) {
-  .inner-content {
+  .hide-content {
     display: none;
   }
 }
