@@ -1,18 +1,24 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { requestCustomers } from "../../services/CustomerService";
 
 const Customer = () => {
   const [customers, setCustomers] = useState([]);
 
   useEffect(() => {
-    const fetchCustomerData = async () => {
-      axios
-        .get(`https://localhost:7095/api/customers`)
-        .then((res) => setCustomers(res.data.data))
-        .catch((err) => console.log(err));
+    const retrieveCustomers = async () => {
+      try {
+        const response = await requestCustomers();
+
+        setCustomers(response.data); //backend response is special, it has msg, code, and data. we want data.
+      } catch (error) {
+        console.log(error);
+      }
     };
-    fetchCustomerData();
+
+    retrieveCustomers();
   }, []);
+
   return (
     <div>
       <h2>Customers</h2>
