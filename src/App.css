@@ -81,7 +81,7 @@ body {
 }
 
 @media (max-width: 1900px) {
-  .inner-content {
+  .hide-content {
     display: none;
   }
 }
