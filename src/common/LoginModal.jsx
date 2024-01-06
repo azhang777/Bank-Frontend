@@ -72,7 +72,6 @@ const LoginModal = ({ handleAuth }) => {
               aria-labelledby='exampleModalLabel'
               aria-hidden='true'
               style={{ display: "block" }}
-              onClick={() => setShowModal(false)}
             >
               <div className='modal-dialog'>
                 <div className='modal-content'>
@@ -114,7 +113,6 @@ const LoginModal = ({ handleAuth }) => {
               aria-labelledby='exampleModalLabel'
               aria-hidden='true'
               style={{ display: "block" }}
-              onClick={() => setShowModal(false)}
             >
               <div className='modal-dialog'>
                 <div className='modal-content'>

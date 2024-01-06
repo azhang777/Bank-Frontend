@@ -7,10 +7,10 @@ const CustomCard = ({ img, title, text, children }) => {
         className='card-img'
       />
       <div className='card-img-overlay'>
-        <div className='card-row row d-flex p-5 justify-content-around align-items-center'>
+        <div className='card-row row d-flex  justify-content-around align-items-center'>
           <div className='col-6'>
-            <h5 className='custom-card-title'>{title}</h5>
-            <p className='custom-card-text'>{text}</p>
+            <h5 className='custom-card-title text-nowrap'>{title}</h5>
+            <p className='custom-card-text text-nowrap'>{text}</p>
           </div>
           <div className='col-4 d-flex justify-content-center align-items-center'>
             {children}

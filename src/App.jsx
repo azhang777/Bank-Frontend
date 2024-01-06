@@ -16,7 +16,6 @@ function App() {
 
   const handleAuth = (token) => {
     setIsAuth(token);
-    console.log(token);
   };
 
   return (

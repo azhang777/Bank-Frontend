@@ -25,7 +25,7 @@ AccountRow.propTypes = {
   account: PropTypes.shape({
     id: PropTypes.number.isRequired,
     accountType: PropTypes.string.isRequired,
-    nickName: PropTypes.number.isRequired,
+    nickName: PropTypes.string.isRequired,
     rewards: PropTypes.number.isRequired,
     balance: PropTypes.number.isRequired,
     customerId: PropTypes.number.isRequired,
