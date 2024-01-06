@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { requestBills } from "../../services/billService";
-import CustomList from "../../common/CustomList";
 import Loading from "../../common/Loading";
 import CustomTable from "../../common/CustomTable";
-import CommonRow from "../../common/CommonRow";
+import BillRow from "./BillRow";
 
 const Bill = () => {
   const [bills, setBills] = useState(null);
   const columns = ["ID", "Nickname", "Payment Date"];
+
   useEffect(() => {
     const retrieveBills = async () => {
       try {
@@ -35,11 +35,9 @@ const Bill = () => {
         <CustomTable
           columns={columns}
           dataRows={bills.map((bill) => (
-            <CommonRow
+            <BillRow
               key={bill.id}
-              id={bill.id}
-              nickName={bill.nickName}
-              accountType={bill.paymentDate}
+              bill={bill}
             />
           ))}
         />

@@ -10,3 +10,5 @@ const CommonRow = ({ column1, column2, column3 }) => {
 };
 
 export default CommonRow;
+
+//currently unused

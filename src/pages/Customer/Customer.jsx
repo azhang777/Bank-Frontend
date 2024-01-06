@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import { requestCustomers } from "../../services/CustomerService";
-import CustomList from "../../common/CustomList";
 import Loading from "../../common/Loading";
 import CustomTable from "../../common/CustomTable";
-import CommonRow from "../../common/CommonRow";
+import CustomerRow from "./CustomerRow";
 
 const Customer = () => {
   const [customers, setCustomers] = useState(null);
   const columns = ["ID", "First Name", "Lastname"];
+
   useEffect(() => {
     const retrieveCustomers = async () => {
       try {
@@ -35,11 +35,9 @@ const Customer = () => {
         <CustomTable
           columns={columns}
           dataRows={customers.map((customer) => (
-            <CommonRow
+            <CustomerRow
               key={customer.id}
-              column1={customer.id}
-              column2={customer.firstName}
-              column3={customer.lastName}
+              customer={customer}
             />
           ))}
         />
@@ -49,6 +47,7 @@ const Customer = () => {
 };
 
 //within the li, we will create a component that will go into specific customer and show name, and other info. check exalidraw.
+//no we will not, we will have a useNavigate hook within each Row component that navigates to their respective Detail component location.
 export default Customer;
 
 /*

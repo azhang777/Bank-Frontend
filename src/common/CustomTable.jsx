@@ -1,4 +1,4 @@
-// eslint-disable-next-line react/prop-types
+import PropTypes from "prop-types";
 const CustomTable = ({ columns, dataRows }) => {
   return (
     <div className='container-fluid m-auto'>
@@ -25,9 +25,14 @@ const CustomTable = ({ columns, dataRows }) => {
   );
 };
 
+CustomTable.propTypes = {
+  columns: PropTypes.arrayOf(PropTypes.string).isRequired,
+  dataRows: PropTypes.node.isRequired,
+};
+
 export default CustomTable;
 
-/* must be an array. we should add type validation to this */
+/* column must be an array and dataRow must be a row component. we should add type validation to this */
 /*
 https://sandroroth.com/blog/react-slots/
 */

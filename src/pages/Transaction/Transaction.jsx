@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import CustomList from "../../common/CustomList";
 import Loading from "../../common/Loading";
 import { requestTransactions } from "../../services/transactionService";
 import CustomTable from "../../common/CustomTable";
-import CommonRow from "../../common/CommonRow";
+import TransactionRow from "./TransactionRow";
 
 const Transaction = () => {
   const [transactions, setTransactions] = useState(null);
-  const columns = ["ID", "Transaction Type", "Date"];
+  const columns = ["ID", "Transaction Type", "Date", "Status", "Amount"];
+
   useEffect(() => {
     const retrieveTransactions = async () => {
       try {
@@ -35,11 +35,9 @@ const Transaction = () => {
         <CustomTable
           columns={columns}
           dataRows={transactions.map((transaction) => (
-            <CommonRow
+            <TransactionRow
               key={transaction.id}
-              column1={transaction.id}
-              column2={transaction.transactionType}
-              column3={transaction.transactionDate}
+              transaction={transaction}
             />
           ))}
         />

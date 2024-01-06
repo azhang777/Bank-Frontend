@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import Loading from "../../common/Loading";
 import { requestCustomerAccounts } from "../../services/accountService";
 import CustomTable from "../../common/CustomTable";
-import CommonRow from "../../common/CommonRow";
+import AccountRow from "./AccountRow";
 
 const Account = () => {
   const [accounts, setAccounts] = useState(null);
   const columns = ["ID", "Account Type", "Nickname"];
+
   useEffect(() => {
     const retrieveCustomerAccounts = async () => {
       try {
@@ -34,11 +35,9 @@ const Account = () => {
         <CustomTable
           columns={columns}
           dataRows={accounts.map((account) => (
-            <CommonRow
+            <AccountRow
               key={account.id}
-              column1={account.id}
-              column2={account.accountType}
-              column3={account.nickName}
+              account={account}
             />
           ))}
         />

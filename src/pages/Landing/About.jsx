@@ -25,7 +25,7 @@ const About = () => {
           text='Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, accusantium perferendis! Ab culpa, id quia qui autem, fuga, facere dignissimos et consequuntur atque inventore vero quis in dolore natus blanditiis.'
         />
       </div>
-      <div className='col-12 '>
+      <div className='col-12 py-5 '>
         <CustomCardBullet
           img={Stars}
           title='Great Benefits'

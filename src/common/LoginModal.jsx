@@ -7,8 +7,8 @@ import { requestAccount } from "../services/OAuthService";
 // eslint-disable-next-line react/prop-types
 const LoginModal = ({ handleAuth }) => {
   const [showModal, setShowModal] = useState(false);
-  const [user, setUser] = useState([]);
-  const [profile, setProfile] = useState([]);
+  const [user, setUser] = useState("");
+  const [profile, setProfile] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
