@@ -4,7 +4,7 @@ const CustomTable = ({ columns, dataRows }) => {
     <div className='container-fluid m-auto'>
       <div className='row justify-content-center'>
         <div className='col-8'>
-          <table className='table table-hover fs-1'>
+          <table className='table table-hover fs-2'>
             <thead>
               <tr>
                 {columns.map((column, index) => (

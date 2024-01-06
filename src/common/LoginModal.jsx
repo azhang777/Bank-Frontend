@@ -1,12 +1,10 @@
 import { useGoogleLogin, googleLogout } from "@react-oauth/google";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import CustomButton from "./CustomButton";
 import { requestAccount } from "../services/OAuthService";
 
 // eslint-disable-next-line react/prop-types
 const LoginModal = ({ handleAuth }) => {
-  const [showModal, setShowModal] = useState(false);
   const [user, setUser] = useState("");
   const [profile, setProfile] = useState("");
   const navigate = useNavigate();
@@ -34,7 +32,6 @@ const LoginModal = ({ handleAuth }) => {
       handleAuth(response.access_token);
       setUser(response);
       navigate("/home");
-      setShowModal(false);
     },
     onError: (error) => console.error("Login Failed:", error),
   });
@@ -60,43 +57,142 @@ const LoginModal = ({ handleAuth }) => {
     <>
       {profile ? (
         <div>
-          <CustomButton onClick={() => setShowModal(true)}>
+          <button
+            type='button'
+            className='btn btn-primary rounded-pill px-4 mx-4 shadow-sm fs-5'
+            data-bs-toggle='modal'
+            data-bs-target='#exampleModal'
+          >
             {profile.name}
-          </CustomButton>
+          </button>
 
-          {showModal && (
-            <div
-              className='modal fade show'
-              id='exampleModal'
-              tabIndex='-1'
-              aria-labelledby='exampleModalLabel'
-              aria-hidden='true'
-              style={{ display: "block" }}
-            >
-              <div className='modal-dialog'>
-                <div className='modal-content'>
-                  <div className='modal-header'>
-                    <h1 className='modal-title fs-5 text-center'>Logout</h1>
-                    <button
-                      type='button'
-                      className='btn-close'
-                      data-bs-dismiss='modal'
-                      aria-label='Close'
-                      onClick={() => setShowModal(false)}
-                    ></button>
-                  </div>
-                  <div className='modal-body mt-3'>
-                    <p>Are you sure you want to logout?</p>
-                  </div>
-                  <div className='modal-footer justify-content-center'>
-                    <CustomButton onClick={logout}>Log out</CustomButton>
-                  </div>
+          <div
+            className='modal fade'
+            id='exampleModal'
+            tabIndex='-1'
+            aria-labelledby='exampleModalLabel'
+            aria-hidden='true'
+          >
+            <div className='modal-dialog'>
+              <div className='modal-content'>
+                <div className='modal-header'>
+                  <h1 className='modal-title fs-5 text-center'>Logout</h1>
+                  <button
+                    type='button'
+                    className='btn-close'
+                    data-bs-dismiss='modal'
+                    aria-label='Close'
+                  ></button>
+                </div>
+                <div className='modal-body mt-3'>
+                  <p>Are you sure you want to logout?</p>
+                </div>
+                <div className='modal-footer justify-content-center'>
+                  <button
+                    type='button'
+                    onClick={() => logout()}
+                    className='btn btn-primary rounded-pill px-4 mx-4 shadow-sm fs-5'
+                    data-bs-dismiss='modal'
+                  >
+                    Log out
+                  </button>
                 </div>
               </div>
             </div>
-          )}
+          </div>
         </div>
       ) : (
+        <div>
+          <button
+            type='button'
+            className='btn btn-primary rounded-pill px-4 mx-4 shadow-sm fs-5'
+            data-bs-toggle='modal'
+            data-bs-target='#exampleModal'
+          >
+            Log in
+          </button>
+          <div
+            className='modal fade'
+            id='exampleModal'
+            tabIndex='-1'
+            aria-labelledby='exampleModalLabel'
+            aria-hidden='true'
+          >
+            <div className='modal-dialog'>
+              <div className='modal-content'>
+                <div className='modal-header'>
+                  <h1
+                    className='modal-title fs-5'
+                    id='exampleModalLabel'
+                  >
+                    Login with your existing account
+                  </h1>
+                  <button
+                    type='button'
+                    className='btn-close'
+                    data-bs-dismiss='modal'
+                    aria-label='Close'
+                  ></button>
+                </div>
+                <form onSubmit={(e) => handleSubmit(e)}>
+                  <div className='modal-body'>
+                    <div className='mb-5'>
+                      <label
+                        htmlFor='exampleInputUsername'
+                        className='form-label d-flex fs-3'
+                      >
+                        Username
+                      </label>
+                      <input
+                        type='username'
+                        className='form-control'
+                        id='exampleInputUsername'
+                        aria-describedby='usernameHelp'
+                      />
+                    </div>
+                    <div className='mb-5'>
+                      <label
+                        htmlFor='exampleInputPassword1'
+                        className='form-label d-flex fs-3'
+                      >
+                        Password
+                      </label>
+                      <input
+                        type='password'
+                        className='form-control'
+                        id='exampleInputPassword1'
+                      />
+                    </div>
+                  </div>
+                  <div className='modal-footer'>
+                    <button
+                      type='button'
+                      className='btn btn-primary rounded-pill px-4 mx-4 shadow-sm fs-5'
+                      data-bs-dismiss='modal'
+                      onClick={() => login()}
+                    >
+                      Sign in with Google
+                    </button>
+                    <button
+                      type='submit'
+                      className='btn btn-primary rounded-pill px-4 mx-4 shadow-sm fs-5'
+                    >
+                      Log in
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default LoginModal;
+
+/*
         <div>
           <CustomButton
             className='btn btn-primary rounded-pill px-4 mx-4 shadow-sm fs-5'
@@ -170,9 +266,4 @@ const LoginModal = ({ handleAuth }) => {
             </div>
           )}
         </div>
-      )}
-    </>
-  );
-};
-
-export default LoginModal;
+*/

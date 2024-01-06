@@ -3,6 +3,7 @@ import { requestCustomers } from "../../services/CustomerService";
 import Loading from "../../common/Loading";
 import CustomTable from "../../common/CustomTable";
 import CustomerRow from "./CustomerRow";
+import CustomButton from "../../common/CustomButton";
 
 const Customer = () => {
   const [customers, setCustomers] = useState(null);
@@ -42,6 +43,9 @@ const Customer = () => {
           ))}
         />
       )}
+      <div className='container footer text-center my-5'>
+        <CustomButton btnStyle='btn-success'>Create Customer</CustomButton>
+      </div>
     </>
   );
 };

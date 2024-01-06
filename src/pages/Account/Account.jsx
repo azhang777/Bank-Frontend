@@ -3,6 +3,7 @@ import Loading from "../../common/Loading";
 import { requestCustomerAccounts } from "../../services/accountService";
 import CustomTable from "../../common/CustomTable";
 import AccountRow from "./AccountRow";
+import CustomButton from "../../common/CustomButton";
 
 const Account = () => {
   const [accounts, setAccounts] = useState(null);

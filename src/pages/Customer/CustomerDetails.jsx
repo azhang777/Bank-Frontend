@@ -23,14 +23,64 @@ const CustomerDetails = () => {
           {address.map((element, index) => (
             <h3 key={element.id}>
               Address {index + 1} : {element.streetNumber} {element.streetName},{" "}
-              {element.city} {element.state}, {element.zipCode}
+              {element.city}, {element.state}, {element.zipCode}
             </h3>
           ))}
         </div>
-        <div className='col-12  py-3 border-5 border-top'>
-          <CustomButton btnStyle='btn-success text-nowrap'>
+        <div className='col-12 py-3 border-5 border-top'>
+          <button
+            type='button'
+            className='btn btn-primary rounded-pill px-4 mx-4 shadow-sm fs-5'
+            data-bs-toggle='modal'
+            data-bs-target='#staticBackdrop'
+          >
             Create Account
-          </CustomButton>
+          </button>
+
+          <div
+            className='modal fade'
+            id='staticBackdrop'
+            data-bs-backdrop='static'
+            data-bs-keyboard='false'
+            tabIndex='-1'
+            aria-labelledby='staticBackdropLabel'
+            aria-hidden='true'
+          >
+            <div className='modal-dialog'>
+              <div className='modal-content'>
+                <div className='modal-header'>
+                  <h1
+                    className='modal-title fs-5'
+                    id='staticBackdropLabel'
+                  >
+                    Modal title
+                  </h1>
+                  <button
+                    type='button'
+                    className='btn-close'
+                    data-bs-dismiss='modal'
+                    aria-label='Close'
+                  ></button>
+                </div>
+                <div className='modal-body'>...</div>
+                <div className='modal-footer'>
+                  <button
+                    type='button'
+                    className='btn btn-secondary'
+                    data-bs-dismiss='modal'
+                  >
+                    Close
+                  </button>
+                  <button
+                    type='button'
+                    className='btn btn-primary '
+                  >
+                    Understood
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
