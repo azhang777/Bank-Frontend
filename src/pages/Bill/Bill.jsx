@@ -3,7 +3,6 @@ import { requestBills } from "../../services/billService";
 import Loading from "../../common/Loading";
 import CustomTable from "../../common/CustomTable";
 import BillRow from "./BillRow";
-import CustomButton from "../../common/CustomButton";
 
 const Bill = () => {
   const [bills, setBills] = useState(null);
@@ -15,7 +14,7 @@ const Bill = () => {
         const response = await requestBills();
         setBills(response.data);
       } catch (error) {
-        console.log(error);
+        console.error(error);
         setBills([]);
       }
     };

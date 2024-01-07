@@ -20,7 +20,7 @@ const LoginModal = ({ handleAuth }) => {
           setProfile(userData);
         }
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     };
 
@@ -48,7 +48,7 @@ const LoginModal = ({ handleAuth }) => {
 
     const username = document.getElementById("exampleInputUsername").value;
     const password = document.getElementById("exampleInputPassword1").value;
-
+    //since we are using DOM to find value, the form component is uncontrolled. Controlled is better and example is in CreateAccountModal
     console.log("Submitted Username:", username);
     console.log("Submitted Password:", password);
   };
@@ -90,7 +90,7 @@ const LoginModal = ({ handleAuth }) => {
                 <div className='modal-footer justify-content-center'>
                   <button
                     type='button'
-                    onClick={() => logout()}
+                    onClick={logout}
                     className='btn btn-primary rounded-pill px-4 mx-4 shadow-sm fs-5'
                     data-bs-dismiss='modal'
                   >
@@ -134,7 +134,7 @@ const LoginModal = ({ handleAuth }) => {
                     aria-label='Close'
                   ></button>
                 </div>
-                <form onSubmit={(e) => handleSubmit(e)}>
+                <form onSubmit={handleSubmit}>
                   <div className='modal-body'>
                     <div className='mb-5'>
                       <label
@@ -169,7 +169,7 @@ const LoginModal = ({ handleAuth }) => {
                       type='button'
                       className='btn btn-primary rounded-pill px-4 mx-4 shadow-sm fs-5'
                       data-bs-dismiss='modal'
-                      onClick={() => login()}
+                      onClick={login}
                     >
                       Sign in with Google
                     </button>

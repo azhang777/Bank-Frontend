@@ -15,7 +15,7 @@ const Customer = () => {
         const response = await requestCustomers();
         setCustomers(response.data); //backend response is special, it has msg, code, and data. we want data.
       } catch (error) {
-        console.log(error);
+        console.error(error);
         setCustomers([]); //backend if no customers exist, error is thrown, so try block doesn't set state
       }
     };
@@ -43,7 +43,7 @@ const Customer = () => {
           ))}
         />
       )}
-      <div className='container footer text-center my-5'>
+      <div className='container stick-bottom text-center my-5'>
         <CustomButton btnStyle='btn-success'>Create Customer</CustomButton>
       </div>
     </>

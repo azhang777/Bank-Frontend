@@ -14,7 +14,7 @@ const Transaction = () => {
         const response = await requestTransactions();
         setTransactions(response.data);
       } catch (error) {
-        console.log(error);
+        console.error(error);
         setTransactions([]);
       }
     };
