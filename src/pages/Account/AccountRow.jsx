@@ -12,7 +12,7 @@ const AccountRow = ({ account }) => {
   };
 
   return (
-    <tr onClick={() => handleRowClick()}>
+    <tr onClick={handleRowClick}>
       <td>{id}</td>
       <td>{accountType}</td>
       <td>{nickName}</td>

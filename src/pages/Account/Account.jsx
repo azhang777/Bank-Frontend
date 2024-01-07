@@ -3,7 +3,6 @@ import Loading from "../../common/Loading";
 import { requestCustomerAccounts } from "../../services/accountService";
 import CustomTable from "../../common/CustomTable";
 import AccountRow from "./AccountRow";
-import CustomButton from "../../common/CustomButton";
 
 const Account = () => {
   const [accounts, setAccounts] = useState(null);
@@ -15,7 +14,7 @@ const Account = () => {
         const response = await requestCustomerAccounts();
         setAccounts(response.data);
       } catch (error) {
-        console.log(error);
+        console.error(error);
         setAccounts([]);
       }
     };

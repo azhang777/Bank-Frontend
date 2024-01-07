@@ -62,7 +62,7 @@ body {
   transform: scale(1.05);
 }
 
-.footer {
+.stick-bottom {
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
