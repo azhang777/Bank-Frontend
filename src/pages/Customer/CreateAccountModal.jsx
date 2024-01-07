@@ -169,6 +169,7 @@ const CreateAccountModal = ({ customerId }) => {
 CreateAccountModal.propTypes = {
   customerId: PropTypes.number.isRequired,
 };
+
 export default CreateAccountModal;
 
 /*
