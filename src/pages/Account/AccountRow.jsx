@@ -33,3 +33,16 @@ AccountRow.propTypes = {
 };
 
 export default AccountRow;
+
+/*
+  const [newCustomer, setNewCustomer] = useState({
+    firstName: "",
+    lastName: "",
+    address: [],
+  });
+  const [addressAmount, setAddressAmount] = useState(1);
+
+  const handleAddressCount = (crement) => {
+    setAddressAmount(newCustomer.address.length + crement);
+  };
+*/

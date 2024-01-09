@@ -2,6 +2,7 @@ import { useGoogleLogin, googleLogout } from "@react-oauth/google";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { requestAccount } from "../services/OAuthService";
+import CustomButton from "./CustomButton";
 
 // eslint-disable-next-line react/prop-types
 const LoginModal = ({ handleAuth }) => {

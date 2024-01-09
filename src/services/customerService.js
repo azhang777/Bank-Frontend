@@ -9,3 +9,16 @@ export const requestCustomers = async () => {
     throw new Error("Failed to retrieve customers: " + error.message);
   }
 };
+
+export const requestCreateCustomer = async (newCustomer) => {
+  try {
+    const res = await axios.post(
+      `https://localhost:7095/api/customers`,
+      newCustomer
+    );
+
+    return res;
+  } catch (error) {
+    throw new Error(`Failed to create customer`, error);
+  }
+};

@@ -78,6 +78,7 @@ const CreateAccountModal = ({ customerId }) => {
                       value={newAccount.accountType}
                       onChange={handleChange}
                       aria-label='Account Type'
+                      required
                     >
                       <option value=''>Choose...</option>
                       <option value='savings'>SAVINGS</option>
@@ -101,6 +102,7 @@ const CreateAccountModal = ({ customerId }) => {
                       onChange={handleChange}
                       placeholder='enter name'
                       aria-label='Account Nickname'
+                      required
                     />
                   </div>
                   <div className='row mb-3'>

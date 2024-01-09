@@ -27,7 +27,7 @@ const CustomerDetails = () => {
             </h3>
           ))}
         </div>
-        <div className='col-12 py-3 border-5 border-top'>
+        <div className='col-12 pt-3 border-5 border-top'>
           <CreateAccountModal customerId={id} />
         </div>
       </div>

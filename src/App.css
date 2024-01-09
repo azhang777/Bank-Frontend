@@ -62,11 +62,8 @@ body {
   transform: scale(1.05);
 }
 
-.stick-bottom {
-  position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 0;
+.vh-60 {
+  height: 60vh;
 }
 
 @media (max-width: 768px) {

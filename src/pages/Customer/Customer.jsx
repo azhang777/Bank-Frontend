@@ -4,6 +4,7 @@ import Loading from "../../common/Loading";
 import CustomTable from "../../common/CustomTable";
 import CustomerRow from "./CustomerRow";
 import CustomButton from "../../common/CustomButton";
+import CreateCustomerModal from "./CreateCustomerModal";
 
 const Customer = () => {
   const [customers, setCustomers] = useState(null);
@@ -43,8 +44,8 @@ const Customer = () => {
           ))}
         />
       )}
-      <div className='container stick-bottom text-center my-5'>
-        <CustomButton btnStyle='btn-success'>Create Customer</CustomButton>
+      <div className='container text-center my-5'>
+        <CreateCustomerModal />
       </div>
     </>
   );
