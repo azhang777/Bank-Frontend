@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CustomNav from "./common/CustomNav";
 import LandingPage from "./pages/Landing/LandingPage";
 import Home from "./pages/Home/Home";

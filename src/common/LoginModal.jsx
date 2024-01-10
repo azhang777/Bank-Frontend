@@ -5,9 +5,9 @@ import { requestAccount } from "../services/OAuthService";
 import CustomButton from "./CustomButton";
 
 // eslint-disable-next-line react/prop-types
-const LoginModal = ({ handleAuth }) => {
+const LoginModal = ({ handleAuth, profileFromLocal }) => {
   const [user, setUser] = useState("");
-  const [profile, setProfile] = useState("");
+  const [profile, setProfile] = useState(profileFromLocal);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,6 +19,7 @@ const LoginModal = ({ handleAuth }) => {
           //asyncawait retreiveAccount(user) ensures that the data returned from the function is ready.
           //setProfile will be called only after retrieveAccount(user) completes.
           setProfile(userData);
+          localStorage.setItem("profile", userData);
         }
       } catch (error) {
         console.error(error);
@@ -40,6 +41,7 @@ const LoginModal = ({ handleAuth }) => {
   const logout = () => {
     handleAuth("");
     googleLogout();
+    localStorage.clear();
     setProfile(null);
     navigate("/");
   };

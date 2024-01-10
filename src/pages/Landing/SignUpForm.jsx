@@ -1,8 +1,8 @@
 const SignUpForm = () => {
   return (
-    <form className='container-fluid bg-white p-5 rounded-5 shadow-lg hide-content '>
-      <div className='row mb-5'>
-        <div className='col'>
+    <form className='container bg-white p-5 rounded-5 shadow-lg hide-content '>
+      <div className='row custom-margin'>
+        <div className='col ps-0'>
           <label
             htmlFor='exampleInputEmail1'
             className='form-label'
@@ -15,7 +15,7 @@ const SignUpForm = () => {
             aria-label='First name'
           />
         </div>
-        <div className='col'>
+        <div className='col pe-0'>
           <label
             htmlFor='exampleInputEmail1'
             className='form-label'
@@ -29,10 +29,10 @@ const SignUpForm = () => {
           />
         </div>
       </div>
-      <div className='mb-5'>
+      <div className='row custom-margin'>
         <label
           htmlFor='exampleInputEmail1'
-          className='form-label'
+          className='form-label ps-0'
         >
           Email address
         </label>
@@ -43,10 +43,10 @@ const SignUpForm = () => {
           aria-describedby='emailHelp'
         />
       </div>
-      <div className='mb-5'>
+      <div className='row custom-margin'>
         <label
           htmlFor='exampleInputUsername'
-          className='form-label'
+          className='form-label ps-0'
         >
           Username
         </label>
@@ -57,10 +57,10 @@ const SignUpForm = () => {
           aria-describedby='usernameHelp'
         />
       </div>
-      <div className='mb-5'>
+      <div className='row custom-margin'>
         <label
           htmlFor='exampleInputPassword1'
-          className='form-label'
+          className='form-label ps-0'
         >
           Password
         </label>
@@ -70,7 +70,7 @@ const SignUpForm = () => {
           id='exampleInputPassword1'
         />
       </div>
-      <div className='mb-5 form-check'>
+      <div className='custom-margin form-check'>
         <input
           type='checkbox'
           className='form-check-input'
@@ -90,12 +90,14 @@ const SignUpForm = () => {
           </a>
         </label>
       </div>
-      <button
-        type='submit'
-        className='btn btn-primary'
-      >
-        Continue
-      </button>
+      <div className='text-center'>
+        <button
+          type='submit'
+          className='btn btn-primary'
+        >
+          Continue
+        </button>
+      </div>
     </form>
   );
 };

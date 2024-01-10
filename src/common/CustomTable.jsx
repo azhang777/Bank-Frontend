@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 const CustomTable = ({ columns, dataRows }) => {
   return (
-    <div className='container-fluid m-auto vh-60'>
+    <div className='container-fluid m-auto'>
       <div className='row justify-content-center'>
         <div className='col-8'>
           <table className='table table-hover fs-2'>

@@ -3,7 +3,6 @@ import { requestCustomers } from "../../services/CustomerService";
 import Loading from "../../common/Loading";
 import CustomTable from "../../common/CustomTable";
 import CustomerRow from "./CustomerRow";
-import CustomButton from "../../common/CustomButton";
 import CreateCustomerModal from "./CreateCustomerModal";
 
 const Customer = () => {

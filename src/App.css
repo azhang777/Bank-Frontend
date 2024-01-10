@@ -66,6 +66,14 @@ body {
   height: 60vh;
 }
 
+.form-label {
+  font-size: 1.2vw;
+}
+
+.custom-margin {
+  margin-bottom: 1.5vw;
+}
+
 @media (max-width: 768px) {
   .icon {
     width: 75px;
@@ -90,7 +98,7 @@ body {
   }
 }
 
-@media (max-width: 1900px) {
+@media (max-width: 1140px) {
   .hide-content {
     display: none;
   }
