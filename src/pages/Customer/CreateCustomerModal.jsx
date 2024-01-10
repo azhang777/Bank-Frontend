@@ -110,7 +110,7 @@ const CreateCustomerModal = () => {
                       type='text'
                       id='firstName'
                       name='firstName'
-                      className='form-control'
+                      className='form-control ms-2'
                       value={newCustomer.firstName}
                       onChange={handleChange}
                       placeholder='enter name'
@@ -129,7 +129,7 @@ const CreateCustomerModal = () => {
                       type='text'
                       id='lastName'
                       name='lastName'
-                      className='form-control'
+                      className='form-control ms-2'
                       value={newCustomer.lastName}
                       onChange={handleChange}
                       placeholder='enter name'

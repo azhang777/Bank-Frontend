@@ -31,7 +31,7 @@ const AccountDetails = () => {
           <h2>Balance: {currencyFormatter.format(balance)}</h2>
         </div>
         <div className='col-6 py-3 border-5 border-top'>
-          <CreateBillModal/>
+          <CreateBillModal accountId={id}/>
          
         </div>
         <div className='col-6  py-3 border-5 border-top'>

@@ -1,3 +1,4 @@
+
 import Example from "./Example";
 import RouteContainer from "./RouteContainer";
 import WelcomeBanner from "./WelcomeBanner";
@@ -6,8 +7,6 @@ const Home = () => {
     <>
       <WelcomeBanner />
       <RouteContainer />
-      <Example/>
-
     </>
   );
 };

@@ -1,34 +1,42 @@
 import { useState } from "react";
 import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { requestCreateBill } from "../../services/billService";
+
 const CreateBillModal = ({accountId}) => {
     const [newBill, setNewBill] = useState({
         transactionStatus: "PENDING",
         payee: "",
         nickName: "",
         creationDate: "",
-        paymentDate: new Date(),
+        paymentDate: "",
         recurringDate: 0,
         upcomingPaymentDate: "",
         paymentAmount: 0
       });
     
+      const [paymentDate, setPaymentDate] = useState(new Date());
+
       const handleChange = (e) => {
         const { name, value } = e.target;
         setNewBill({ ...newBill, [name]: value });
       };
     
       const handleDateChange = (date) => {
-        setNewBill({...newBill, paymentDate: date })
+        setPaymentDate(date)
       }
 
       const handleSubmit = async (e) => {
         e.preventDefault();
+        const formattedDate = (paymentDate.getMonth() + 1) + "/" + paymentDate.getDate() + "/" + paymentDate.getFullYear();
+        console.log(formattedDate);
+        setNewBill({...newBill, creationDate: new Date().toString() , upcomingPaymentDate: newBill.recurringDate, paymentDate: formattedDate})
         try {
-          const response = await requestCreateAccount(newAccount, customerId);
-    
+          const response = await requestCreateBill({...newBill, creationDate: new Date().toString() , upcomingPaymentDate: newBill.recurringDate, paymentDate: formattedDate}, accountId);
+        
           console.info(response);
         } catch (error) {
-          console.error("Error creating account: ", error);
+          console.error("Error creating bill: ", error);
         }
       };
     
@@ -81,23 +89,85 @@ const CreateBillModal = ({accountId}) => {
                           type='text'
                           id='nickName'
                           name='nickName'
-                          className='form-control'
+                          className='form-control ms-2'
                           value={newBill.nickName}
                           onChange={handleChange}
-                          placeholder='enter name'
+                          placeholder='enter nick name'
                           aria-label='Account Nickname'
                           required
                         />
                       </div>
                       <div className='row mb-3'>
-                        <div className='col-6 col-xs-12'>
-                          <label
+                        <div className="col-6">
+                        <label
+                            htmlFor='payee'
+                            className='form-label d-flex fs-5'
+                          >
+                            Payee
+                          </label>
+                          <input
+                          type='text'
+                          id='payee'
+                          name='payee'
+                          className='form-control '
+                          value={newBill.payee}
+                          onChange={handleChange}
+                          placeholder='enter payee name'
+                          aria-label='Payee'
+                          required
+                        />
+                        </div>
+                        <div className="col-6">
+                        <label
+                            htmlFor='paymentAmount'
+                            className='form-label d-flex fs-5'
+                          >
+                            Amount
+                          </label>
+                          <input
+                          type='number'
+                          min={10}
+                          max={10000}
+                          id='paymentAmount'
+                          name='paymentAmount'
+                          className='form-control '
+                          value={newBill.paymentAmount}
+                          onChange={handleChange}
+                          placeholder='enter amount'
+                          aria-label='Payment Amount'
+                          required
+                        />
+                        </div>
+                      </div>
+                      <div className='row mb-3'>
+                        <div className="col-6">
+                        <label
                             htmlFor='paymentDate'
                             className='form-label d-flex fs-5'
                           >
                             Payment Date
                           </label>
-                          <DatePicker selected={newBill.paymentDate} onChange={(paymentDate) => handleDateChange(paymentDate)} />
+                          <div className="d-flex">
+                            <DatePicker selected={paymentDate} onChange={(paymentDate) => handleDateChange(paymentDate)} />
+                          </div>
+                        </div>
+                        <div className="col-6">
+                          <label
+                            htmlFor='recurringDate'
+                            className='form-label d-flex fs-5'
+                          >
+                            Recurring Day
+                          </label>
+                          <input                          
+                          type='number'
+                          id='recurringDate'
+                          name='recurringDate'
+                          className='form-control '
+                          value={newBill.recurringDate}
+                          onChange={handleChange}
+                          placeholder='enter recurring day'
+                          aria-label='Recurring Date'
+                          />
                         </div>
                       </div>
                     </div>

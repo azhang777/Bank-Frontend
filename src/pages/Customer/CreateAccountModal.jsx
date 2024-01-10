@@ -72,7 +72,7 @@ const CreateAccountModal = ({ customerId }) => {
                       Account Type
                     </label>
                     <select
-                      className='form-select'
+                      className='form-select ms-2'
                       id='accountType'
                       name='accountType'
                       value={newAccount.accountType}
@@ -97,7 +97,7 @@ const CreateAccountModal = ({ customerId }) => {
                       type='text'
                       id='nickName'
                       name='nickName'
-                      className='form-control'
+                      className='form-control ms-2'
                       value={newAccount.nickName}
                       onChange={handleChange}
                       placeholder='enter nick name'
@@ -117,7 +117,7 @@ const CreateAccountModal = ({ customerId }) => {
                         type='number'
                         id='rewards'
                         name='rewards'
-                        className='form-control'
+                        className='form-control '
                         value={newAccount.rewards}
                         placeholder='0'
                         aria-label='Account Rewards'
@@ -127,7 +127,7 @@ const CreateAccountModal = ({ customerId }) => {
                     <div className='col-6 col-xs-12'>
                       <label
                         htmlFor='balance'
-                        className='form-label d-flex fs-5'
+                        className='form-label d-flex fs-5 '
                       >
                         Balance
                       </label>
@@ -135,7 +135,7 @@ const CreateAccountModal = ({ customerId }) => {
                         type='number'
                         id='balance'
                         name='balance'
-                        className='form-control'
+                        className='form-control '
                         value={newAccount.balance}
                         placeholder='0'
                         aria-label='Account Nickname'

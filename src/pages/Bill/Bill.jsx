@@ -6,7 +6,7 @@ import BillRow from "./BillRow";
 
 const Bill = () => {
   const [bills, setBills] = useState(null);
-  const columns = ["ID", "Nickname", "Payment Date"];
+  const columns = ["ID", "Nickname", "Payment Date", "Amount"];
 
   useEffect(() => {
     const retrieveBills = async () => {
