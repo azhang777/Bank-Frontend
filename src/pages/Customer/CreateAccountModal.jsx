@@ -100,7 +100,7 @@ const CreateAccountModal = ({ customerId }) => {
                       className='form-control'
                       value={newAccount.nickName}
                       onChange={handleChange}
-                      placeholder='enter name'
+                      placeholder='enter nick name'
                       aria-label='Account Nickname'
                       required
                     />
@@ -108,7 +108,7 @@ const CreateAccountModal = ({ customerId }) => {
                   <div className='row mb-3'>
                     <div className='col-6 col-xs-12'>
                       <label
-                        htmlFor='accountType'
+                        htmlFor='rewards'
                         className='form-label d-flex fs-5'
                       >
                         Rewards
@@ -126,7 +126,7 @@ const CreateAccountModal = ({ customerId }) => {
                     </div>
                     <div className='col-6 col-xs-12'>
                       <label
-                        htmlFor='accountType'
+                        htmlFor='balance'
                         className='form-label d-flex fs-5'
                       >
                         Balance

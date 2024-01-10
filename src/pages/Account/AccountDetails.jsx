@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import CustomButton from "../../common/CustomButton";
 import currencyFormatter from "../../utils/currencyFormatter";
+import CreateBillModal from "./CreateBillModal";
 
 const AccountDetails = () => {
   const location = useLocation();
@@ -30,7 +31,8 @@ const AccountDetails = () => {
           <h2>Balance: {currencyFormatter.format(balance)}</h2>
         </div>
         <div className='col-6 py-3 border-5 border-top'>
-          <CustomButton btnStyle='btn-success '> Schedule Bill</CustomButton>
+          <CreateBillModal/>
+         
         </div>
         <div className='col-6  py-3 border-5 border-top'>
           <CustomButton btnStyle='btn-success text-nowrap'>
