@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import CustomButton from "../../common/CustomButton";
 import currencyFormatter from "../../utils/currencyFormatter";
 import CreateBillModal from "./CreateBillModal";
+import CreateTransactionModal from "./CreateTransactionModal";
 
 const AccountDetails = () => {
   const location = useLocation();
@@ -35,9 +36,7 @@ const AccountDetails = () => {
          
         </div>
         <div className='col-6  py-3 border-5 border-top'>
-          <CustomButton btnStyle='btn-success text-nowrap'>
-            Make Transaction
-          </CustomButton>
+          <CreateTransactionModal accountId={id}/>
         </div>
       </div>
     </div>

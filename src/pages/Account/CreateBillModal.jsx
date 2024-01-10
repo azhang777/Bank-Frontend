@@ -46,13 +46,13 @@ const CreateBillModal = ({accountId}) => {
             type='button'
             className='btn btn-success rounded-pill px-4 mx-4 shadow-sm fs-5'
             data-bs-toggle='modal'
-            data-bs-target='#staticBackdrop'
+            data-bs-target='#staticBackdropBill'
           >
             Schedule Bill
           </button>
           <div
             className='modal fade'
-            id='staticBackdrop'
+            id='staticBackdropBill'
             data-bs-backdrop='static'
             data-bs-keyboard='false'
             tabIndex='-1'
@@ -197,24 +197,3 @@ const CreateBillModal = ({accountId}) => {
 }
 
 export default CreateBillModal
-
-/*
-                        <div className='col-6 col-xs-12'>
-                          <label
-                            htmlFor='nickName'
-                            className='form-label d-flex fs-5'
-                          >
-                            Balance
-                          </label>
-                          <input
-                            type='number'
-                            id='balance'
-                            name='balance'
-                            className='form-control'
-                            value={newAccount.balance}
-                            placeholder='0'
-                            aria-label='Account Nickname'
-                            disabled
-                          />
-                        </div>
-*/

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { requestCustomers } from "../../services/CustomerService";
+import { requestCustomers } from "../../services/customerService";
 import Loading from "../../common/Loading";
 import CustomTable from "../../common/CustomTable";
 import CustomerRow from "./CustomerRow";
