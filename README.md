@@ -1,8 +1,22 @@
-# React + Vite
+# Project Development Plan Readme
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Week 1: Starting Jan 10th
+- **Thursday - Friday:**
+  - Finish the front end of the bank API. At least to what is expected from the Exalidraw draft.
+- **Saturday:**
+  - Start learning Kafka and find a way to implement it into the dotnet Bank (Maybe if withdrawal is invalid, notify email that account ID cannot withdrawal due to insufficient balance).
 
-Currently, two official plugins are available:
+## Week 2: Starting Jan 15th
+- **Monday - Saturday:**
+  - Continue learning Kafka and OAuth. When comfortable with both, start learning Redis for caching.
+  - (^^) Watch and follow along with testing in C# at [Test Automation University](https://testautomationu.applitools.com/learningpaths.html?id=csharp-web-ui-path).
+  - Scrum Test.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Week 3: Starting Jan 22nd
+- **Monday - Saturday:**
+  - By the end of Friday, the Bank should have all the features that were asked for.
+  - (^^) Continue learning C# testing and automation. Read about STORED PROCEDURES in Chapter 12 of the SQL book.
+  - Maybe rebuild the bank frontend with Angular? This will continue through February.
+## Week 4: Jan 29th - 31st
+- **Monday - Wednesday:**
+  - Continue on with what is unfinished
