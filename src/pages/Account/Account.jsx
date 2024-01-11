@@ -6,7 +6,7 @@ import AccountRow from "./AccountRow";
 
 const Account = () => {
   const [accounts, setAccounts] = useState(null);
-  const columns = ["ID", "Account Type", "Nickname"];
+  const columns = ["ID", "Account Type", "Nickname", ""];
 
   useEffect(() => {
     const retrieveCustomerAccounts = async () => {

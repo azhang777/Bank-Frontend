@@ -25,3 +25,19 @@ export const requestCreateAccount = async (newAccount, customerId) => {
     );
   }
 };
+
+export const requestDeleteAccount = async (accountId) => {
+  try {
+    const res = await axios.delete(
+      `https://localhost:7095/api/accounts/${accountId}`
+    );
+
+    return res;
+  } catch (error) {
+    throw new Error(`Failed to delete account ${accountId}`);
+  }
+};
+
+export const requestUpdateAccount = async () => {
+  return null;
+};

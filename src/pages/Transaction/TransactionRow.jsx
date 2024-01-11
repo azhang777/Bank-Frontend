@@ -2,15 +2,10 @@ import currencyFormatter from "../../utils/currencyFormatter";
 import PropTypes from "prop-types";
 
 const TransactionRow = ({ transaction }) => {
-  const {
-    id,
-    transactionType,
-    description,
-    transactionDate,
-    transactionStatus,
-    amount,
-  } = transaction;
+  const { id, transactionType, description, transactionStatus, amount } =
+    transaction;
 
+  //throw transactionDate in if needed
   return (
     <tr>
       <td>{id}</td>

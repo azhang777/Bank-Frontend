@@ -7,7 +7,7 @@ import CreateCustomerModal from "./CreateCustomerModal";
 
 const Customer = () => {
   const [customers, setCustomers] = useState(null);
-  const columns = ["ID", "First Name", "Last Name"];
+  const columns = ["ID", "First Name", "Last Name", ""];
 
   useEffect(() => {
     const retrieveCustomers = async () => {

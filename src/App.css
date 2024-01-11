@@ -6,7 +6,7 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
 
@@ -74,6 +74,13 @@ body {
   transform: scale(1.05);
 }
 
+.warning-color {
+  color: #ffd43b;
+}
+
+.danger-color {
+  color: #d41616;
+}
 .vh-60 {
   height: 60vh;
 }

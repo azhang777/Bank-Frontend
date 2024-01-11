@@ -22,3 +22,7 @@ export const requestCreateCustomer = async (newCustomer) => {
     throw new Error(`Failed to create customer`, error);
   }
 };
+
+export const requestUpdateCustomer = async () => {
+  return null;
+};
