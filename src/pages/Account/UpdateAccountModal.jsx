@@ -1,24 +1,43 @@
-import { useState } from "react";
-import { requestCreateAccount } from "../../services/accountService";
+import { useEffect, useState } from "react";
+import {
+  requestAccount,
+  requestUpdateAccount,
+} from "../../services/accountService";
 import PropTypes from "prop-types";
-//pass customer id to this
-const CreateAccountModal = ({ customerId }) => {
-  const [newAccount, setNewAccount] = useState({
+import UpdateButton from "../../common/UpdateButton";
+
+const UpdateAccountModal = ({ accountId, onClick: event }) => {
+  const [existingAccount, setExistingAccount] = useState({
     accountType: "",
     nickName: "",
     rewards: 0,
     balance: 0,
   });
 
+  useEffect(() => {
+    const retrieveAccount = async () => {
+      try {
+        const response = await requestAccount(accountId);
+        setExistingAccount(response.data);
+      } catch (error) {
+        console.error(error);
+        setExistingAccount([]);
+      }
+    };
+
+    retrieveAccount();
+  }, [accountId]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setNewAccount({ ...newAccount, [name]: value });
+    setExistingAccount({ ...existingAccount, [name]: value });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await requestCreateAccount(newAccount, customerId);
+      console.log(existingAccount);
+      const response = await requestUpdateAccount(existingAccount, accountId);
 
       console.info(response);
     } catch (error) {
@@ -27,18 +46,16 @@ const CreateAccountModal = ({ customerId }) => {
   };
 
   return (
-    <>
-      <button
+    <div onClick={event}>
+      <UpdateButton
         type='button'
-        className='btn btn-success rounded-pill px-4 mx-4 shadow-sm fs-5'
-        data-bs-toggle='modal'
-        data-bs-target='#staticBackdrop'
-      >
-        Create Account
-      </button>
+        dataToggle='modal'
+        dataTarget={`#staticBackdropUpdateAccount${accountId}`}
+      />
+
       <div
         className='modal fade'
-        id='staticBackdrop'
+        id={`staticBackdropUpdateAccount${accountId}`}
         data-bs-backdrop='static'
         data-bs-keyboard='false'
         tabIndex='-1'
@@ -52,7 +69,7 @@ const CreateAccountModal = ({ customerId }) => {
                 className='modal-title fs-5'
                 id='staticBackdropLabel'
               >
-                Account Creation
+                Update Account for account {accountId}
               </h1>
               <button
                 type='button'
@@ -75,7 +92,7 @@ const CreateAccountModal = ({ customerId }) => {
                       className='form-select ms-2'
                       id='accountType'
                       name='accountType'
-                      value={newAccount.accountType}
+                      value={existingAccount.accountType}
                       onChange={handleChange}
                       aria-label='Account Type'
                       required
@@ -98,7 +115,7 @@ const CreateAccountModal = ({ customerId }) => {
                       id='nickName'
                       name='nickName'
                       className='form-control ms-2'
-                      value={newAccount.nickName}
+                      value={existingAccount.nickName}
                       onChange={handleChange}
                       placeholder='enter nick name'
                       aria-label='Account Nickname'
@@ -118,8 +135,7 @@ const CreateAccountModal = ({ customerId }) => {
                         id='rewards'
                         name='rewards'
                         className='form-control '
-                        value={newAccount.rewards}
-                        placeholder='0'
+                        value={existingAccount.rewards}
                         aria-label='Account Rewards'
                         disabled
                       />
@@ -136,8 +152,7 @@ const CreateAccountModal = ({ customerId }) => {
                         id='balance'
                         name='balance'
                         className='form-control '
-                        value={newAccount.balance}
-                        placeholder='0'
+                        value={existingAccount.balance}
                         aria-label='Account Balance'
                         disabled
                       />
@@ -164,30 +179,13 @@ const CreateAccountModal = ({ customerId }) => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
-CreateAccountModal.propTypes = {
-  customerId: PropTypes.number.isRequired,
+UpdateAccountModal.propTypes = {
+  accountId: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
-export default CreateAccountModal;
-
-/*
-{() => handleSubmit()}: This syntax defines an inline arrow function that, 
-when executed, will call handleSubmit(). 
-This approach can be useful when you need to pass arguments or 
-do some additional processing before calling the actual function.
-
-{handleSubmit}: This directly passes a reference to the handleSubmit function itself. 
-It doesn’t invoke the function immediately; it just passes a reference to it. 
-It's commonly used when you want to pass a function as a prop to a child component
- or as an event handler (e.g., onClick, onChange).
-
-In most cases, especially for event handlers like onClick or onSubmit, 
-you should use {handleSubmit} directly rather than {() => handleSubmit()}. 
-Using the latter approach creates a new function instance on every render, 
-which could potentially cause unnecessary re-renders of child components 
-that receive this function as a prop.
-*/
+export default UpdateAccountModal;

@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import ButtonCombo from "../../common/ButtonCombo";
-import UpdateButton from "../../common/UpdateButton";
 import DeleteButton from "../../common/DeleteButton";
 import { requestDeleteAccount } from "../../services/accountService";
+import UpdateAccountModal from "./UpdateAccountModal";
 const AccountRow = ({ account }) => {
   const { id, accountType, nickName, rewards, balance, customerId } = account;
 
@@ -15,7 +15,8 @@ const AccountRow = ({ account }) => {
     });
   };
 
-  const handleDeletAccount = async (id) => {
+  const handleDeleteAccount = async (id) => {
+    handleClick();
     try {
       const response = await requestDeleteAccount(id);
 
@@ -25,29 +26,24 @@ const AccountRow = ({ account }) => {
     }
   };
 
+  const handleClick = (e) => {
+    e.stopPropagation();
+  };
+
   return (
     <tr onClick={handleRowClick}>
       <td>{id}</td>
       <td>{accountType}</td>
-      <td>{nickName}</td>
+      <td> {nickName}</td>
       <td>
         <ButtonCombo
           buttonOne={
-            <UpdateButton
-              onClick={(e) => {
-                e.stopPropagation();
-                console.log("update");
-              }}
+            <UpdateAccountModal
+              accountId={id}
+              onClick={handleClick}
             />
           }
-          buttonTwo={
-            <DeleteButton
-              onClick={(e) => {
-                e.stopPropagation();
-                handleDeletAccount(id);
-              }}
-            />
-          }
+          buttonTwo={<DeleteButton onClick={handleDeleteAccount} />}
         />
       </td>
     </tr>

@@ -10,6 +10,16 @@ export const requestCustomerAccounts = async () => {
   }
 };
 
+export const requestAccount = async (accountId) => {
+  try {
+    const res = await axios(`https://localhost:7095/api/accounts/${accountId}`);
+
+    return res.data;
+  } catch (error) {
+    throw new Error(`Failed to retrieve account ${accountId}`);
+  }
+};
+
 export const requestCreateAccount = async (newAccount, customerId) => {
   try {
     const res = await axios.post(
@@ -38,6 +48,18 @@ export const requestDeleteAccount = async (accountId) => {
   }
 };
 
-export const requestUpdateAccount = async () => {
-  return null;
+export const requestUpdateAccount = async (
+  existingUpdatedAccount,
+  accountId
+) => {
+  try {
+    const res = await axios.put(
+      `https://localhost:7095/api/accounts/${accountId}`,
+      existingUpdatedAccount
+    );
+
+    return res;
+  } catch (error) {
+    throw new Error(`Failed to update account ${accountId}`);
+  }
 };

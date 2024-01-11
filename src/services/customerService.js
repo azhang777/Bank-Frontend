@@ -10,6 +10,18 @@ export const requestCustomers = async () => {
   }
 };
 
+export const requestCustomer = async (customerId) => {
+  try {
+    const res = await axios(
+      `https://localhost:7095/api/customers/${customerId}`
+    );
+
+    return res.data;
+  } catch (error) {
+    throw new Error("Failed to retrieve customers: " + error.message);
+  }
+};
+
 export const requestCreateCustomer = async (newCustomer) => {
   try {
     const res = await axios.post(
@@ -23,6 +35,18 @@ export const requestCreateCustomer = async (newCustomer) => {
   }
 };
 
-export const requestUpdateCustomer = async () => {
-  return null;
+export const requestUpdateCustomer = async (
+  existingUpdatedCustomer,
+  customerId
+) => {
+  try {
+    const res = await axios.put(
+      `https://localhost:7095/api/customers/${customerId}`,
+      existingUpdatedCustomer
+    );
+
+    return res;
+  } catch (error) {
+    throw new Error(`Failed to update customer ${customerId}`);
+  }
 };

@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const ButtonCombo = ({ buttonOne, buttonTwo }) => {
   return (
     <div className='container '>
@@ -7,6 +9,11 @@ const ButtonCombo = ({ buttonOne, buttonTwo }) => {
       </div>
     </div>
   );
+};
+
+ButtonCombo.propTypes = {
+  buttonOne: PropTypes.node,
+  buttonTwo: PropTypes.node,
 };
 
 export default ButtonCombo;

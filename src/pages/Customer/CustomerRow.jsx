@@ -1,8 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
-import ButtonCombo from "../../common/ButtonCombo";
-import UpdateButton from "../../common/UpdateButton";
-import DeleteButton from "../../common/DeleteButton";
+import UpdateCustomerModal from "./UpdateCustomerModal";
 // eslint-disable-next-line react/prop-types
 const CustomerRow = ({ customer }) => {
   const { id, firstName, lastName, address } = customer;
@@ -14,21 +12,19 @@ const CustomerRow = ({ customer }) => {
     });
   };
 
+  const handleClick = (e) => {
+    e.stopPropagation();
+  };
+
   return (
     <tr onClick={() => handleRowClick()}>
       <td>{id}</td>
       <td>{firstName}</td>
       <td>{lastName}</td>
       <td>
-        <ButtonCombo
-          buttonOne={
-            <UpdateButton
-              onClick={(e) => {
-                e.stopPropagation();
-                console.log("update");
-              }}
-            />
-          }
+        <UpdateCustomerModal
+          customerId={id}
+          onClick={handleClick}
         />
       </td>
     </tr>
