@@ -223,7 +223,7 @@ const CreateCustomerModal = () => {
                     </div>
                   ))}
                   <div className='row mb-3 justify-content-center'>
-                    <div className='col-3'>
+                    <div className='col-3  col-md-12'>
                       <CustomButton
                         btnStyle='btn-success'
                         onClick={() => handleAddressCount(1)}
@@ -232,7 +232,7 @@ const CreateCustomerModal = () => {
                       </CustomButton>
                     </div>
                     {newCustomer.address.length > 1 && (
-                      <div className='col-3'>
+                      <div className='col-3 col-md-12'>
                         <CustomButton
                           btnStyle='btn-danger'
                           onClick={() => handleAddressCount(-1)}

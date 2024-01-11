@@ -1,36 +1,22 @@
 import { useState } from "react";
-import { requestCreateAccount } from "../../services/accountService";
 import PropTypes from "prop-types";
+import CreateDeposit from "./CreateDeposit";
+import CreateWithdrawal from "./CreateWithdrawal";
+import CreateP2P from "./CreateP2P";
 //pass customer id to this
-const CreateTransactionModal = ({ customerId }) => {
-  const [newTransaction, setNewTransaction] = useState({
-    accountType: "",
-    nickName: "",
-    rewards: 0,
-    balance: 0,
-  });
+const CreateTransactionModal = ({ accountId }) => {
+  const [transactionType, setTransactionType] = useState({});
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setNewAccount({ ...newAccount, [name]: value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await requestCreateAccount(newAccount, customerId);
-
-      console.info(response);
-    } catch (error) {
-      console.error("Error creating account: ", error);
-    }
+    const { value } = e.target;
+    setTransactionType(value);
   };
 
   return (
     <>
       <button
         type='button'
-        className='btn btn-success rounded-pill px-4 mx-4 shadow-sm fs-5'
+        className='btn btn-success rounded-pill px-4 mx-4 shadow-sm fs-5 text-nowrap'
         data-bs-toggle='modal'
         data-bs-target='#staticBackdropTransaction'
       >
@@ -62,23 +48,40 @@ const CreateTransactionModal = ({ customerId }) => {
               ></button>
             </div>
             <div className='modal-body'>
-                
+              <div className='container'>
+                <div className='row mb-3'>
+                  <label
+                    htmlFor='transactionType'
+                    className='form-label d-flex fs-3'
+                  >
+                    Transaction Type
+                  </label>
+                  <select
+                    className='form-select ms-2'
+                    id='transactionType'
+                    name='transactionType'
+                    value={transactionType}
+                    onChange={handleChange}
+                    aria-label='Transaction Type'
+                    required
+                  >
+                    <option value=''>Choose...</option>
+                    <option value='DEPOSIT'>DEPOSIT</option>
+                    <option value='WITHDRAWAL'>WITHDRAWAL</option>
+                    <option value='P2P'>P2P</option>
+                  </select>
+                  {transactionType === "DEPOSIT" && (
+                    <CreateDeposit accountId={accountId} />
+                  )}
+                  {transactionType === "WITHDRAWAL" && (
+                    <CreateWithdrawal accountId={accountId} />
+                  )}
+                  {transactionType === "P2P" && (
+                    <CreateP2P accountId={accountId} />
+                  )}
+                </div>
+              </div>
             </div>
-            <div className='modal-footer'>
-          <button
-            type='button'
-            className='btn btn-secondary rounded-pill px-4 mx-4 shadow-sm fs-5'
-            data-bs-dismiss='modal'
-          >
-            Close
-          </button>
-          <button
-            type='submit'
-            className='btn btn-primary rounded-pill px-4 mx-4 shadow-sm fs-5'
-          >
-            Confirm
-          </button>
-        </div>
           </div>
         </div>
       </div>
@@ -91,5 +94,3 @@ CreateTransactionModal.propTypes = {
 };
 
 export default CreateTransactionModal;
-
-

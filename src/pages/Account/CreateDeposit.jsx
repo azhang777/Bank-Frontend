@@ -1,91 +1,95 @@
+import { useState } from "react";
+import { requestCreateDeposit } from "../../services/transactionService";
 
-const CreateDeposit = () => {
+const CreateDeposit = ({ accountId }) => {
+  const [newDeposit, setNewDeposit] = useState({
+    transactionType: "DEPOSIT",
+    transactionDate: new Date(),
+    transactionStatus: "PENDING",
+    transactionMedium: "BALANCE",
+    amount: 0,
+    description: "",
+  });
 
-    return (
-        <form onSubmit={handleSubmit}>
-        <div className='modal-body'>
-          <div className='container'>
-            <div className='row mb-3'>
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setNewDeposit({ ...newDeposit, [name]: value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(newDeposit);
+    try {
+      const response = await requestCreateDeposit(newDeposit, accountId);
+
+      console.info(response);
+    } catch (error) {
+      console.error("Error creating account: ", error);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <div className='modal-body'>
+        <div className='container'>
+          <div className='row mb-3'>
+            <div className='col-6 col-xs-12'>
               <label
-                htmlFor='accountType'
-                className='form-label d-flex fs-3'
+                htmlFor='amount'
+                className='form-label d-flex fs-5 ms-2'
               >
-                Account Type
-              </label>
-              <select
-                className='form-select ms-2'
-                id='accountType'
-                name='accountType'
-                value={newAccount.accountType}
-                onChange={handleChange}
-                aria-label='Account Type'
-                required
-              >
-                <option value=''>Choose...</option>
-                <option value='savings'>SAVINGS</option>
-                <option value='checkings'>CHECKINGS</option>
-                <option value='credit'>CREDIT</option>
-              </select>
-            </div>
-            <div className='row mb-3'>
-              <label
-                htmlFor='accountType'
-                className='form-label d-flex fs-3'
-              >
-                Nickname
+                Deposit Amount
               </label>
               <input
-                type='text'
-                id='nickName'
-                name='nickName'
+                type='number'
+                id='amount'
+                name='amount'
                 className='form-control ms-2'
-                value={newAccount.nickName}
+                value={newDeposit.amount}
                 onChange={handleChange}
-                placeholder='enter nick name'
-                aria-label='Account Nickname'
+                placeholder='enter deposit amount'
+                aria-label='Deposit Amount'
                 required
               />
             </div>
-            <div className='row mb-3'>
-              <div className='col-6 col-xs-12'>
-                <label
-                  htmlFor='rewards'
-                  className='form-label d-flex fs-5'
-                >
-                  Rewards
-                </label>
-                <input
-                  type='number'
-                  id='rewards'
-                  name='rewards'
-                  className='form-control '
-                  value={newAccount.rewards}
-                  placeholder='0'
-                  aria-label='Account Rewards'
-                  disabled
-                />
-              </div>
-              <div className='col-6 col-xs-12'>
-                <label
-                  htmlFor='balance'
-                  className='form-label d-flex fs-5 '
-                >
-                  Balance
-                </label>
-                <input
-                  type='number'
-                  id='balance'
-                  name='balance'
-                  className='form-control '
-                  value={newAccount.balance}
-                  placeholder='0'
-                  aria-label='Account Nickname'
-                  disabled
-                />
-              </div>
+            <div className='col-6 col-xs-12'>
+              <label
+                htmlFor='description'
+                className='form-label d-flex fs-5'
+              >
+                Description
+              </label>
+              <input
+                type='text'
+                id='description'
+                name='description'
+                className='form-control '
+                onChange={handleChange}
+                value={newDeposit.description}
+                placeholder='Description'
+                aria-label='Description'
+              />
             </div>
           </div>
         </div>
-      </form>
-    )
-}
+      </div>
+      <div className='modal-footer  pb-0'>
+        <button
+          type='button'
+          className='btn btn-secondary rounded-pill px-4 mx-4 shadow-sm fs-5'
+          data-bs-dismiss='modal'
+        >
+          Close
+        </button>
+        <button
+          type='submit'
+          className='btn btn-primary rounded-pill px-4 mx-4 shadow-sm fs-5'
+        >
+          Confirm
+        </button>
+      </div>
+    </form>
+  );
+};
+
+export default CreateDeposit;

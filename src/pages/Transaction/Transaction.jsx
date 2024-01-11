@@ -6,7 +6,7 @@ import TransactionRow from "./TransactionRow";
 
 const Transaction = () => {
   const [transactions, setTransactions] = useState(null);
-  const columns = ["ID", "Transaction Type", "Date", "Status", "Amount"];
+  const columns = ["ID", "Transaction Type", "Description", "Status", "Amount"];
 
   useEffect(() => {
     const retrieveTransactions = async () => {

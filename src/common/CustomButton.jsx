@@ -6,7 +6,7 @@ const CustomButton = ({ children, btnStyle, onClick: event }) => {
       type='button'
       className={`btn ${
         btnStyle || "btn-primary"
-      } rounded-pill px-4 mx-4 shadow-sm fs-5`}
+      } rounded-pill px-4 mx-4 shadow-sm fs-5 text-nowrap`}
       onClick={event}
     >
       {children}
