@@ -90,7 +90,7 @@ const CreateTransactionModal = ({ accountId }) => {
 };
 
 CreateTransactionModal.propTypes = {
-  customerId: PropTypes.number.isRequired,
+  accountId: PropTypes.number.isRequired,
 };
 
 export default CreateTransactionModal;

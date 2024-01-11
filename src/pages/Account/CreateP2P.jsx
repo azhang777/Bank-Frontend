@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { requestCreateP2P } from "../../services/transactionService";
+import PropTypes from "prop-types";
 
 const CreateP2P = ({ accountId }) => {
   const [newP2P, setNewP2P] = useState({
@@ -112,4 +113,7 @@ const CreateP2P = ({ accountId }) => {
   );
 };
 
+CreateP2P.propTypes = {
+  accountId: PropTypes.number.isRequired,
+};
 export default CreateP2P;

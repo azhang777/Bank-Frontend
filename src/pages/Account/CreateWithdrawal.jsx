@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { requestCreateWithdrawal } from "../../services/transactionService";
-
+import PropTypes from "prop-types";
 const CreateWithdrawal = ({ accountId }) => {
   const [newWithdrawal, setNewWithdrawal] = useState({
     transactionType: "WITHDRAWAL",
@@ -92,4 +92,7 @@ const CreateWithdrawal = ({ accountId }) => {
   );
 };
 
+CreateWithdrawal.propTypes = {
+  accountId: PropTypes.number.isRequired,
+};
 export default CreateWithdrawal;

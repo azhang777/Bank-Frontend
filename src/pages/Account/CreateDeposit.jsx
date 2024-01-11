@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { requestCreateDeposit } from "../../services/transactionService";
+import PropTypes from "prop-types";
 
 const CreateDeposit = ({ accountId }) => {
   const [newDeposit, setNewDeposit] = useState({
@@ -90,6 +91,10 @@ const CreateDeposit = ({ accountId }) => {
       </div>
     </form>
   );
+};
+
+CreateDeposit.propTypes = {
+  accountId: PropTypes.number.isRequired,
 };
 
 export default CreateDeposit;
