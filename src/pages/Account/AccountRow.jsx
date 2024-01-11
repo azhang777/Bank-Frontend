@@ -15,8 +15,8 @@ const AccountRow = ({ account }) => {
     });
   };
 
-  const handleDeleteAccount = async (id) => {
-    handleClick();
+  const handleDeleteAccount = async (e, id) => {
+    e.stopPropagation();
     try {
       const response = await requestDeleteAccount(id);
 
@@ -27,7 +27,7 @@ const AccountRow = ({ account }) => {
   };
 
   const handleClick = (e) => {
-    e.stopPropagation();
+   e.stopPropagation();
   };
 
   return (
@@ -43,7 +43,7 @@ const AccountRow = ({ account }) => {
               onClick={handleClick}
             />
           }
-          buttonTwo={<DeleteButton onClick={handleDeleteAccount} />}
+          buttonTwo={<DeleteButton onClick={(e) => handleDeleteAccount(e,id)} />}
         />
       </td>
     </tr>

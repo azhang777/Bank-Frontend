@@ -35,6 +35,9 @@ const CreateP2P = ({ accountId }) => {
       <div className='modal-body'>
         <div className='container'>
           <div className='row mb-3'>
+          <div className="col-2 d-flex justify-content-center align-items-center mt-4">
+              <p>Payee id: {accountId}</p>
+            </div>
             <div className='col-4 col-xs-12'>
               <label
                 htmlFor='amount'
@@ -44,6 +47,7 @@ const CreateP2P = ({ accountId }) => {
               </label>
               <input
                 type='number'
+                min={1}
                 id='amount'
                 name='amount'
                 className='form-control ms-2'
@@ -54,7 +58,7 @@ const CreateP2P = ({ accountId }) => {
                 required
               />
             </div>
-            <div className='col-4 col-xs-12'>
+            <div className='col-2 col-xs-12'>
               <label
                 htmlFor='receiverId'
                 className='form-label d-flex fs-5 ms-2'
@@ -91,6 +95,8 @@ const CreateP2P = ({ accountId }) => {
                 aria-label='Description'
               />
             </div>
+          </div>
+          <div className="row mb-3">
           </div>
         </div>
       </div>

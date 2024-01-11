@@ -43,6 +43,7 @@ const CreateDeposit = ({ accountId }) => {
               </label>
               <input
                 type='number'
+                min={1}
                 id='amount'
                 name='amount'
                 className='form-control ms-2'
