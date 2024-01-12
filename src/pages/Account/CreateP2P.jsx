@@ -99,14 +99,7 @@ const CreateP2P = ({ accountId }) => {
           <div className='row mb-3'></div>
         </div>
       </div>
-      <div className='modal-footer  pb-0'>
-        <button
-          type='button'
-          className='btn btn-secondary rounded-pill px-4 mx-4 shadow-sm fs-5'
-          data-bs-dismiss='modal'
-        >
-          Close
-        </button>
+      <div className='modal-footer d-flex justify-content-center pb-0'>
         <button
           type='submit'
           className='btn btn-primary rounded-pill px-4 mx-4 shadow-sm fs-5'

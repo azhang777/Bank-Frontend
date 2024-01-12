@@ -27,32 +27,21 @@ const CreateBillModal = ({ accountId }) => {
 
   const handleDateChange = (date) => {
     setPaymentDate(date);
+    const formattedDate =
+      date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear();
+    console.log(formattedDate);
+    setNewBill({
+      ...newBill,
+      upcomingPaymentDate: formattedDate,
+      paymentDate: formattedDate,
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const formattedDate =
-      paymentDate.getMonth() +
-      1 +
-      "/" +
-      paymentDate.getDate() +
-      "/" +
-      paymentDate.getFullYear();
-    console.log(formattedDate);
-    setNewBill({
-      ...newBill,
-      creationDate: new Date().toString(),
-      upcomingPaymentDate: newBill.recurringDate,
-      paymentDate: formattedDate,
-    });
     try {
       const response = await requestCreateBill(
-        {
-          ...newBill,
-          creationDate: new Date().toString(),
-          upcomingPaymentDate: newBill.recurringDate,
-          paymentDate: formattedDate,
-        },
+        { ...newBill, creationDate: new Date().toString() },
         accountId
       );
 
