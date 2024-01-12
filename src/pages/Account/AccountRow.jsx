@@ -19,7 +19,7 @@ const AccountRow = ({ account }) => {
     e.stopPropagation();
     try {
       const response = await requestDeleteAccount(id);
-
+      navigate("/home");
       console.info(response);
     } catch (error) {
       console.error("Error deleting customer:", error);
@@ -27,7 +27,7 @@ const AccountRow = ({ account }) => {
   };
 
   const handleClick = (e) => {
-   e.stopPropagation();
+    e.stopPropagation();
   };
 
   return (
@@ -43,7 +43,9 @@ const AccountRow = ({ account }) => {
               onClick={handleClick}
             />
           }
-          buttonTwo={<DeleteButton onClick={(e) => handleDeleteAccount(e,id)} />}
+          buttonTwo={
+            <DeleteButton onClick={(e) => handleDeleteAccount(e, id)} />
+          }
         />
       </td>
     </tr>

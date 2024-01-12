@@ -1,6 +1,7 @@
 import { useState } from "react";
 import CustomButton from "../../common/CustomButton";
 import { requestCreateCustomer } from "../../services/customerService";
+import { useNavigationContext } from "../../common/NavigationProvider";
 //pass customer id to this
 const CreateCustomerModal = () => {
   const [newCustomer, setNewCustomer] = useState({
@@ -36,6 +37,8 @@ const CreateCustomerModal = () => {
     }
   };
 
+  const handleModal = useNavigationContext();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewCustomer({ ...newCustomer, [name]: value });
@@ -54,7 +57,7 @@ const CreateCustomerModal = () => {
     e.preventDefault();
     try {
       const response = await requestCreateCustomer(newCustomer);
-
+      handleModal();
       console.info(response);
     } catch (error) {
       console.error("Error creating account: ", error);

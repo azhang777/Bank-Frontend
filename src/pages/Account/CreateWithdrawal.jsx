@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { requestCreateWithdrawal } from "../../services/transactionService";
 import PropTypes from "prop-types";
+import { useNavigationContext } from "../../common/NavigationProvider";
 const CreateWithdrawal = ({ accountId }) => {
   const [newWithdrawal, setNewWithdrawal] = useState({
     transactionType: "WITHDRAWAL",
@@ -11,6 +12,8 @@ const CreateWithdrawal = ({ accountId }) => {
     description: "",
   });
 
+  const handleModal = useNavigationContext();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewWithdrawal({ ...newWithdrawal, [name]: value });
@@ -18,10 +21,10 @@ const CreateWithdrawal = ({ accountId }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(newWithdrawal);
+
     try {
       const response = await requestCreateWithdrawal(newWithdrawal, accountId);
-
+      handleModal("Transaction");
       console.info(response);
     } catch (error) {
       console.error("Error creating account: ", error);

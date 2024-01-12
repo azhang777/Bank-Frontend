@@ -3,6 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { requestCreateBill } from "../../services/billService";
 import PropTypes from "prop-types";
+import { useNavigationContext } from "../../common/NavigationProvider";
 const CreateBillModal = ({ accountId }) => {
   const [newBill, setNewBill] = useState({
     transactionStatus: "PENDING",
@@ -21,6 +22,8 @@ const CreateBillModal = ({ accountId }) => {
     const { name, value } = e.target;
     setNewBill({ ...newBill, [name]: value });
   };
+
+  const handleModal = useNavigationContext();
 
   const handleDateChange = (date) => {
     setPaymentDate(date);
@@ -53,6 +56,7 @@ const CreateBillModal = ({ accountId }) => {
         accountId
       );
 
+      handleModal("Bill");
       console.info(response);
     } catch (error) {
       console.error("Error creating bill: ", error);
@@ -85,7 +89,7 @@ const CreateBillModal = ({ accountId }) => {
                 className='modal-title fs-5'
                 id='staticBackdropLabel'
               >
-                Bill Creation
+                Bill Creation for Account {accountId}
               </h1>
               <button
                 type='button'
@@ -196,14 +200,7 @@ const CreateBillModal = ({ accountId }) => {
                   </div>
                 </div>
               </div>
-              <div className='modal-footer'>
-                <button
-                  type='button'
-                  className='btn btn-secondary rounded-pill px-4 mx-4 shadow-sm fs-5'
-                  data-bs-dismiss='modal'
-                >
-                  Close
-                </button>
+              <div className='modal-footer d-flex justify-content-center'>
                 <button
                   type='submit'
                   className='btn btn-primary rounded-pill px-4 mx-4 shadow-sm fs-5'

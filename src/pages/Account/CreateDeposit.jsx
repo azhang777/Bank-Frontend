@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { requestCreateDeposit } from "../../services/transactionService";
 import PropTypes from "prop-types";
+import { useNavigationContext } from "../../common/NavigationProvider";
 
 const CreateDeposit = ({ accountId }) => {
   const [newDeposit, setNewDeposit] = useState({
@@ -12,6 +13,8 @@ const CreateDeposit = ({ accountId }) => {
     description: "",
   });
 
+  const handleModal = useNavigationContext();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewDeposit({ ...newDeposit, [name]: value });
@@ -19,11 +22,11 @@ const CreateDeposit = ({ accountId }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(newDeposit);
+
     try {
       const response = await requestCreateDeposit(newDeposit, accountId);
-
       console.info(response);
+      handleModal("Transaction");
     } catch (error) {
       console.error("Error creating account: ", error);
     }
@@ -75,14 +78,7 @@ const CreateDeposit = ({ accountId }) => {
           </div>
         </div>
       </div>
-      <div className='modal-footer  pb-0'>
-        <button
-          type='button'
-          className='btn btn-secondary rounded-pill px-4 mx-4 shadow-sm fs-5'
-          data-bs-dismiss='modal'
-        >
-          Close
-        </button>
+      <div className='modal-footer pb-0 d-flex justify-content-center'>
         <button
           type='submit'
           className='btn btn-primary rounded-pill px-4 mx-4 shadow-sm fs-5'

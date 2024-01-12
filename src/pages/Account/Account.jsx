@@ -3,6 +3,7 @@ import Loading from "../../common/Loading";
 import { requestCustomerAccounts } from "../../services/accountService";
 import CustomTable from "../../common/CustomTable";
 import AccountRow from "./AccountRow";
+import NavigationProvider from "../../common/NavigationProvider";
 
 const Account = () => {
   const [accounts, setAccounts] = useState(null);
@@ -27,7 +28,7 @@ const Account = () => {
   }
 
   return (
-    <div>
+    <NavigationProvider>
       <h1 className='text-center py-5'>Accounts</h1>
       {accounts.length === 0 ? (
         <h1 className='text-center'>no accounts exist :(</h1>
@@ -42,7 +43,7 @@ const Account = () => {
           ))}
         />
       )}
-    </div>
+    </NavigationProvider>
   );
 };
 

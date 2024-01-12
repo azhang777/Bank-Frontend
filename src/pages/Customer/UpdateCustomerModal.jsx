@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
-import UpdateButton from "../../common/UpdateButton";
+
 import {
   requestCustomer,
   requestUpdateCustomer,
 } from "../../services/customerService";
 import CustomButton from "../../common/CustomButton";
+import { useNavigate } from "react-router-dom";
 
 const UpdateCustomerModal = ({ customerId, onClick: event }) => {
   const [existingCustomer, setExistingCustomer] = useState({
@@ -41,6 +42,7 @@ const UpdateCustomerModal = ({ customerId, onClick: event }) => {
     }
   };
 
+  const navigate = useNavigate();
   useEffect(() => {
     const retrieveCustomer = async () => {
       try {
@@ -77,7 +79,7 @@ const UpdateCustomerModal = ({ customerId, onClick: event }) => {
         existingCustomer,
         customerId
       );
-
+      navigate("/home");
       console.info(response);
     } catch (error) {
       console.error("Error creating account: ", error);
@@ -86,10 +88,11 @@ const UpdateCustomerModal = ({ customerId, onClick: event }) => {
 
   return (
     <div onClick={event}>
-      <UpdateButton
+      <button
         type='button'
-        dataToggle='modal'
-        dataTarget={`#staticBackdropUpdateCustomer${customerId}`}
+        className='fa-solid fa-pen bg-transparent border-0 warning-color'
+        data-bs-toggle='modal'
+        data-bs-target={`#staticBackdropUpdateCustomer${customerId}`}
       />
       <div
         className='modal fade'
@@ -264,14 +267,7 @@ const UpdateCustomerModal = ({ customerId, onClick: event }) => {
                   </div>
                 </div>
               </div>
-              <div className='modal-footer'>
-                <button
-                  type='button'
-                  className='btn btn-secondary rounded-pill px-4 mx-4 shadow-sm fs-5'
-                  data-bs-dismiss='modal'
-                >
-                  Close
-                </button>
+              <div className='modal-footer d-flex justify-content-center'>
                 <button
                   type='submit'
                   className='btn btn-primary rounded-pill px-4 mx-4 shadow-sm fs-5'

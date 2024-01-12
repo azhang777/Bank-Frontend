@@ -38,7 +38,7 @@ const CreateTransactionModal = ({ accountId }) => {
                 className='modal-title fs-5'
                 id='staticBackdropLabel'
               >
-                Transaction Creation
+                Transaction Creation for Account {accountId}
               </h1>
               <button
                 type='button'
@@ -49,7 +49,7 @@ const CreateTransactionModal = ({ accountId }) => {
             </div>
             <div className='modal-body'>
               <div className='container'>
-                <div className='row mb-3'>
+                <div className='row'>
                   <label
                     htmlFor='transactionType'
                     className='form-label d-flex fs-3'

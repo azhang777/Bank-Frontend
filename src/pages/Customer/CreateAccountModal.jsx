@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { requestCreateAccount } from "../../services/accountService";
 import PropTypes from "prop-types";
+import { useNavigationContext } from "../../common/NavigationProvider";
 //pass customer id to this
 const CreateAccountModal = ({ customerId }) => {
   const [newAccount, setNewAccount] = useState({
@@ -15,11 +16,13 @@ const CreateAccountModal = ({ customerId }) => {
     setNewAccount({ ...newAccount, [name]: value });
   };
 
+  const handleModal = useNavigationContext();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await requestCreateAccount(newAccount, customerId);
-
+      handleModal();
       console.info(response);
     } catch (error) {
       console.error("Error creating account: ", error);

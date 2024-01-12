@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { requestCreateP2P } from "../../services/transactionService";
 import PropTypes from "prop-types";
+import { useNavigationContext } from "../../common/NavigationProvider";
 
 const CreateP2P = ({ accountId }) => {
   const [newP2P, setNewP2P] = useState({
@@ -13,6 +14,8 @@ const CreateP2P = ({ accountId }) => {
     receiverId: 0,
   });
 
+  const handleModal = useNavigationContext();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setNewP2P({ ...newP2P, [name]: value });
@@ -20,10 +23,10 @@ const CreateP2P = ({ accountId }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(newP2P);
+
     try {
       const response = await requestCreateP2P(newP2P, accountId);
-
+      handleModal("Transaction");
       console.info(response);
     } catch (error) {
       console.error("Error creating account: ", error);
@@ -35,9 +38,6 @@ const CreateP2P = ({ accountId }) => {
       <div className='modal-body'>
         <div className='container'>
           <div className='row mb-3'>
-          <div className="col-2 d-flex justify-content-center align-items-center mt-4">
-              <p>Payee id: {accountId}</p>
-            </div>
             <div className='col-4 col-xs-12'>
               <label
                 htmlFor='amount'
@@ -58,7 +58,7 @@ const CreateP2P = ({ accountId }) => {
                 required
               />
             </div>
-            <div className='col-2 col-xs-12'>
+            <div className='col-4 col-xs-12'>
               <label
                 htmlFor='receiverId'
                 className='form-label d-flex fs-5 ms-2'
@@ -96,8 +96,7 @@ const CreateP2P = ({ accountId }) => {
               />
             </div>
           </div>
-          <div className="row mb-3">
-          </div>
+          <div className='row mb-3'></div>
         </div>
       </div>
       <div className='modal-footer  pb-0'>

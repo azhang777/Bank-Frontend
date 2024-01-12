@@ -4,8 +4,8 @@ import {
   requestUpdateAccount,
 } from "../../services/accountService";
 import PropTypes from "prop-types";
-import UpdateButton from "../../common/UpdateButton";
-
+import { useNavigate } from "react-router-dom";
+import "react-datepicker/dist/react-datepicker.css";
 const UpdateAccountModal = ({ accountId, onClick: event }) => {
   const [existingAccount, setExistingAccount] = useState({
     accountType: "",
@@ -28,6 +28,7 @@ const UpdateAccountModal = ({ accountId, onClick: event }) => {
     retrieveAccount();
   }, [accountId]);
 
+  const navigate = useNavigate();
   const handleChange = (e) => {
     const { name, value } = e.target;
     setExistingAccount({ ...existingAccount, [name]: value });
@@ -35,10 +36,10 @@ const UpdateAccountModal = ({ accountId, onClick: event }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      console.log(existingAccount);
-      const response = await requestUpdateAccount(existingAccount, accountId);
 
+    try {
+      const response = await requestUpdateAccount(existingAccount, accountId);
+      navigate("/home");
       console.info(response);
     } catch (error) {
       console.error("Error creating account: ", error);
@@ -47,10 +48,11 @@ const UpdateAccountModal = ({ accountId, onClick: event }) => {
 
   return (
     <div onClick={event}>
-      <UpdateButton
+      <button
         type='button'
-        dataToggle='modal'
-        dataTarget={`#staticBackdropUpdateAccount${accountId}`}
+        className='fa-solid fa-pen bg-transparent border-0 warning-color'
+        data-bs-toggle='modal'
+        data-bs-target={`#staticBackdropUpdateAccount${accountId}`}
       />
 
       <div
@@ -160,17 +162,11 @@ const UpdateAccountModal = ({ accountId, onClick: event }) => {
                   </div>
                 </div>
               </div>
-              <div className='modal-footer'>
-                <button
-                  type='button'
-                  className='btn btn-secondary rounded-pill px-4 mx-4 shadow-sm fs-5'
-                  data-bs-dismiss='modal'
-                >
-                  Close
-                </button>
+              <div className='modal-footer d-flex justify-content-center'>
                 <button
                   type='submit'
                   className='btn btn-primary rounded-pill px-4 mx-4 shadow-sm fs-5'
+                  data-bs-dismiss='modal'
                 >
                   Confirm
                 </button>
